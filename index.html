@@ -149,17 +149,20 @@
     .lang-switcher {
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 6px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      max-width: 500px;
     }
 
     .lang-btn {
       background: none;
       border: 1px solid var(--border);
       color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 5px 9px;
+      font-size: 0.65rem;
+      letter-spacing: 0.05em;
+      padding: 6px 12px;
+      border-radius: 4px;
       cursor: none;
       transition: all 0.3s;
       font-family: 'DM Sans', sans-serif;
@@ -298,48 +301,38 @@
       animation: fadeUp 1s ease 1.1s both;
     }
 
-    .btn-primary {
+    .btn-primary, .btn-secondary {
       padding: 14px 36px;
-      background: var(--gold);
-      color: var(--bg);
-      text-decoration: none;
       font-size: 0.78rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       font-weight: 500;
-      transition: all 0.3s;
+      transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 220px;
+      border-radius: 2px;
+      text-decoration: none;
     }
 
-    .btn-primary::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--white);
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform 0.4s cubic-bezier(.25, .46, .45, .94);
+    .btn-primary {
+      background: var(--gold);
+      color: var(--bg);
+      border: 1px solid var(--gold);
     }
-
-    .btn-primary:hover::before {
-      transform: scaleX(1);
-    }
-
-    .btn-primary span {
-      position: relative;
-      z-index: 1;
+    
+    .btn-primary:hover {
+      background: transparent;
+      color: var(--gold);
     }
 
     .btn-secondary {
-      padding: 14px 36px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      transition: all 0.3s;
+      background: transparent;
+      color: var(--white);
+      border: 1px solid var(--white);
     }
 
     .btn-secondary:hover {
@@ -352,7 +345,8 @@
       bottom: 48px;
       left: 60px;
       display: flex;
-      align-items: center;
+      flex-direction: column;
+      align-items: flex-start;
       gap: 14px;
       font-size: 0.7rem;
       letter-spacing: 0.25em;
@@ -362,32 +356,28 @@
     }
 
     .scroll-line {
-      width: 40px;
-      height: 1px;
-      background: var(--muted);
+      width: 2px;
+      height: 40px;
+      background: rgba(201, 169, 110, 0.2);
       position: relative;
       overflow: hidden;
+      border-radius: 2px;
     }
 
     .scroll-line::after {
       content: '';
       position: absolute;
       top: 0;
-      left: -100%;
+      left: 0;
       width: 100%;
-      height: 100%;
+      height: 40%;
       background: var(--gold);
-      animation: scrollLine 2s ease-in-out infinite;
+      animation: dropScroll 1.5s cubic-bezier(0.65, 0, 0.35, 1) infinite;
     }
 
-    @keyframes scrollLine {
-      0% {
-        left: -100%
-      }
-
-      100% {
-        left: 100%
-      }
+    @keyframes dropScroll {
+      0% { transform: translateY(-100%); }
+      100% { transform: translateY(250%); }
     }
 
     /* Section base */
@@ -816,12 +806,8 @@
       }
 
       .lang-switcher {
-        gap: 3px;
-      }
-
-      .lang-btn {
-        padding: 4px 6px;
-        font-size: 0.58rem;
+        justify-content: center;
+        margin-top: 10px;
       }
     }
   </style>
@@ -833,11 +819,8 @@
   <div id="cursor-ring"></div>
   <div id="page-transition"></div>
 
-  <!-- ══════════════════════════════════════════════════
-       NAV
-  ═════════════════════════════════════════════════════ -->
   <nav>
-    <a class="nav-logo" href="#">AA.</a>
+    <a class="nav-logo" href="#"></a>
 
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav.about">About</a></li>
@@ -847,18 +830,15 @@
     </ul>
 
     <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-      <button class="lang-btn" data-lang="de">DE</button>
-      <button class="lang-btn" data-lang="fr">FR</button>
-      <button class="lang-btn" data-lang="pt">PT</button>
-      <button class="lang-btn" data-lang="hi">HI</button>
+      <button class="lang-btn active" data-lang="en">English</button>
+      <button class="lang-btn" data-lang="es">Español (Spanish)</button>
+      <button class="lang-btn" data-lang="de">Deutsch (German)</button>
+      <button class="lang-btn" data-lang="fr">Français (French)</button>
+      <button class="lang-btn" data-lang="pt">Português (Portuguese)</button>
+      <button class="lang-btn" data-lang="hi">हिन्दी (Hindi)</button>
     </div>
   </nav>
 
-  <!-- ══════════════════════════════════════════════════
-       HERO
-  ═════════════════════════════════════════════════════ -->
   <section id="hero">
     <p class="hero-eyebrow" data-i18n="hero.eyebrow">Available for opportunities</p>
 
@@ -866,8 +846,6 @@
 
     <p class="hero-role" data-i18n="hero.role">Flutter Architect &amp; Problem Solver</p>
 
-    <!-- ✏️ EDIT #5 — Replace with a 1–2 sentence tagline about yourself
-         Also update "hero.desc" in every language block in the <script> -->
     <p class="hero-desc" data-i18n="hero.desc">
       I build clean, thoughtful digital experiences. Passionate about turning
       complex problems into elegant, intuitive solutions.
@@ -875,7 +853,7 @@
 
     <div class="hero-cta">
       <a class="btn-primary" href="#projects"><span data-i18n="hero.cta1">View My Work</span></a>
-      <a class="btn-secondary" href="#contact" data-i18n="hero.cta2">Get in Touch</a>
+      <a class="btn-secondary" href="#contact"><span data-i18n="hero.cta2">Get in Touch</span></a>
     </div>
     <div class="hero-scroll">
       <div class="scroll-line"></div>
@@ -883,9 +861,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       ABOUT
-  ═════════════════════════════════════════════════════ -->
   <section id="about">
     <div class="about-grid">
       <div class="about-text reveal">
@@ -896,8 +871,6 @@
         </h2>
         <div class="divider"></div>
 
-        <!-- ✏️ EDIT #6 — Replace all 3 paragraphs with your own bio
-             Also update "about.p1", "about.p2", "about.p3" in every language block in the <script> -->
         <p data-i18n="about.p1">I'm a <strong>passionate developer</strong> who loves building things that live on the
           internet. My work is driven by curiosity, precision, and a deep appreciation for great design.</p>
         <p data-i18n="about.p2">When I'm not writing code, you'll find me exploring new technologies, contributing to
@@ -907,7 +880,6 @@
       </div>
 
       <div class="about-stats reveal">
-        <!-- ✏️ EDIT #7 — Update the 4 bold numbers to match your real stats -->
         <div class="stat-box">
           <div class="stat-num">3+</div>
           <div class="stat-label" data-i18n="about.stat1">Years of Experience</div>
@@ -928,20 +900,11 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       SKILLS
-  ═════════════════════════════════════════════════════ -->
   <section id="skills">
     <p class="section-tag reveal" data-i18n="skills.tag">What I Know</p>
     <h2 class="section-title reveal"><span data-i18n="skills.title1">My </span><em data-i18n="skills.title2">Skills</em>
     </h2>
 
-    <!-- ✏️ EDIT #8 — For each skill card:
-         • Change the emoji icon
-         • Change the skill-name text (this is NOT translated — it stays as the tech name)
-         • Update --level="XX%" to reflect your actual proficiency (0%–100%)
-         • Update the data-i18n description key in the <script> translations below
-         You can also duplicate or delete cards to add/remove skills -->
     <div class="skills-grid">
       <div class="skill-card reveal" style="--level: 90%">
         <div class="skill-icon">⚡</div>
@@ -994,20 +957,12 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       PROJECTS
-  ═════════════════════════════════════════════════════ -->
   <section id="projects">
     <p class="section-tag reveal" data-i18n="projects.tag">Featured Work</p>
     <h2 class="section-title reveal"><span data-i18n="projects.title1">Selected </span><em
         data-i18n="projects.title2">Projects</em></h2>
     <div class="projects-grid">
 
-      <!-- ✏️ EDIT #9 — Project 1
-           • Change "Project Name One" to your real project name
-           • Update the description in "projects.p1.desc" in every language block in <script>
-           • Replace tech tags with what you actually used
-           • Replace href="#" with your real GitHub repo URL -->
       <div class="project-card reveal">
         <div class="project-num">01</div>
         <h3 class="project-title">Project Name One</h3>
@@ -1023,7 +978,6 @@
         <a class="project-link" href="#" target="_blank" data-i18n="projects.viewLink">View on GitHub</a>
       </div>
 
-      <!-- ✏️ EDIT #10 — Project 2 (same instructions as above) -->
       <div class="project-card reveal">
         <div class="project-num">02</div>
         <h3 class="project-title">Project Name Two</h3>
@@ -1039,7 +993,6 @@
         <a class="project-link" href="#" target="_blank" data-i18n="projects.viewLink">View on GitHub</a>
       </div>
 
-      <!-- ✏️ EDIT #11 — Project 3 (same instructions as above) -->
       <div class="project-card reveal">
         <div class="project-num">03</div>
         <h3 class="project-title">Project Name Three</h3>
@@ -1058,9 +1011,6 @@
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       CONTACT
-  ═════════════════════════════════════════════════════ -->
   <section id="contact" data-bg-word="HELLO">
     <div class="contact-inner reveal">
       <p class="section-tag" style="justify-content:center" data-i18n="contact.tag">Say Hello</p>
@@ -1069,40 +1019,22 @@
       </h2>
       <br />
 
-      <!-- ✏️ EDIT #12 — Replace BOTH occurrences of youremail@gmail.com with your real email -->
       <a class="contact-email" href="mailto:youremail@gmail.com">youremail@gmail.com</a>
 
       <ul class="social-links">
-        <!-- ✏️ EDIT #13 — Replace each href="#" with your actual profile / file URLs
-             GitHub:   https://github.com/yourusername
-             LinkedIn: https://linkedin.com/in/yourusername
-             Twitter:  https://twitter.com/yourusername
-             Resume:   Upload resume.pdf to your repo and link it as ./resume.pdf -->
-        <li><a href="#" target="_blank" data-i18n="contact.github">GitHub</a></li>
-        <li><a href="#" target="_blank" data-i18n="contact.linkedin">LinkedIn</a></li>
-        <li><a href="#" target="_blank" data-i18n="contact.twitter">Twitter</a></li>
+        <li><a href="#" target="_blank" data-i18n="contact.github">GitHub ↗</a></li>
+        <li><a href="#" target="_blank" data-i18n="contact.linkedin">LinkedIn ↗</a></li>
         <li><a href="#" target="_blank" data-i18n="contact.resume">Resume ↗</a></li>
       </ul>
     </div>
   </section>
 
-  <!-- ══════════════════════════════════════════════════
-       FOOTER
-  ═════════════════════════════════════════════════════ -->
   <footer>
-    <!-- ✏️ EDIT #14 — Replace "Your Name" with your real name -->
-    <p>© 2025 <span>Your Name</span>. <span data-i18n="footer.rights">All rights reserved.</span></p>
+    <p>© <span id="currentYear"></span> <span>Your Name</span>. <span data-i18n="footer.rights">All rights reserved.</span></p>
     <p data-i18n="footer.built">Designed &amp; Built with <span>♥</span></p>
   </footer>
 
 
-  <!-- ══════════════════════════════════════════════════
-       TRANSLATIONS
-       ✏️ EDIT #15 (Optional) — Each language block below contains all the
-       translated text. The keys marked with [PERSONAL] are the ones you
-       should translate into each language if you update your own bio,
-       role, or project descriptions. Everything else is already translated.
-  ═════════════════════════════════════════════════════ -->
   <script>
     const i18n = {
 
@@ -1110,13 +1042,13 @@
       en: {
         "nav.about": "About", "nav.skills": "Skills", "nav.projects": "Projects", "nav.contact": "Contact",
         "hero.eyebrow": "Available for opportunities",
-        "hero.role": "Flutter Architect &amp; Problem Solver",                       // [PERSONAL]
-        "hero.desc": "I build clean, thoughtful digital experiences. Passionate about turning complex problems into elegant, intuitive solutions.", // [PERSONAL]
+        "hero.role": "Flutter Architect &amp; Problem Solver",
+        "hero.desc": "I build clean, thoughtful digital experiences. Passionate about turning complex problems into elegant, intuitive solutions.",
         "hero.cta1": "View My Work", "hero.cta2": "Get in Touch", "hero.scroll": "Scroll to explore",
         "about.tag": "About Me", "about.title1": "Crafting with", "about.title2": "purpose",
-        "about.p1": "I'm a <strong>passionate developer</strong> who loves building things that live on the internet. My work is driven by curiosity, precision, and a deep appreciation for great design.", // [PERSONAL]
-        "about.p2": "When I'm not writing code, you'll find me exploring new technologies, contributing to open-source, or sketching out ideas for the next big project.", // [PERSONAL]
-        "about.p3": "I believe the best products come from the intersection of <strong>clean code, thoughtful UX, and clear communication.</strong>", // [PERSONAL]
+        "about.p1": "I'm a <strong>passionate developer</strong> who loves building things that live on the internet. My work is driven by curiosity, precision, and a deep appreciation for great design.",
+        "about.p2": "When I'm not writing code, you'll find me exploring new technologies, contributing to open-source, or sketching out ideas for the next big project.",
+        "about.p3": "I believe the best products come from the intersection of <strong>clean code, thoughtful UX, and clear communication.</strong>",
         "about.stat1": "Years of Experience", "about.stat2": "Projects Completed", "about.stat3": "Technologies Mastered", "about.stat4": "Commitment to Quality",
         "skills.tag": "What I Know", "skills.title1": "My ", "skills.title2": "Skills",
         "skills.s1": "Semantic markup, modern layouts, responsive design.",
@@ -1126,12 +1058,12 @@
         "skills.s5": "SQL, schema design, queries and optimization.",
         "skills.s6": "Version control, branching, collaboration.",
         "projects.tag": "Featured Work", "projects.title1": "Selected ", "projects.title2": "Projects",
-        "projects.p1.desc": "A brief, compelling description of what this project does, the problem it solves, and what makes it interesting or unique.", // [PERSONAL]
-        "projects.p2.desc": "Describe what you built, the technologies involved, and any results or impact it had.",                                    // [PERSONAL]
-        "projects.p3.desc": "Highlight the most impressive aspect — whether it's the scale, problem domain, tech stack, or outcome achieved.",          // [PERSONAL]
+        "projects.p1.desc": "A brief, compelling description of what this project does, the problem it solves, and what makes it interesting or unique.",
+        "projects.p2.desc": "Describe what you built, the technologies involved, and any results or impact it had.",
+        "projects.p3.desc": "Highlight the most impressive aspect — whether it's the scale, problem domain, tech stack, or outcome achieved.",
         "projects.viewLink": "View on GitHub",
         "contact.tag": "Say Hello", "contact.title1": "Let's ", "contact.title2": "Connect", "contact.bgWord": "HELLO",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Resume ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "Resume ↗",
         "footer.rights": "All rights reserved.", "footer.built": "Designed &amp; Built with <span>♥</span>"
       },
 
@@ -1139,13 +1071,13 @@
       es: {
         "nav.about": "Sobre mí", "nav.skills": "Habilidades", "nav.projects": "Proyectos", "nav.contact": "Contacto",
         "hero.eyebrow": "Disponible para oportunidades",
-        "hero.role": "Arquitecto de Flutter y Solucionador de Problemas",            // [PERSONAL]
-        "hero.desc": "Construyo experiencias digitales limpias y reflexivas. Apasionado por convertir problemas complejos en soluciones elegantes e intuitivas.", // [PERSONAL]
+        "hero.role": "Arquitecto de Flutter y Solucionador de Problemas",
+        "hero.desc": "Construyo experiencias digitales limpias y reflexivas. Apasionado por convertir problemas complejos en soluciones elegantes e intuitivas.",
         "hero.cta1": "Ver Mi Trabajo", "hero.cta2": "Contactar", "hero.scroll": "Desplázate para explorar",
         "about.tag": "Sobre Mí", "about.title1": "Creando con", "about.title2": "propósito",
-        "about.p1": "Soy un <strong>desarrollador apasionado</strong> que ama construir cosas en internet. Mi trabajo está impulsado por la curiosidad, la precisión y la apreciación del buen diseño.", // [PERSONAL]
-        "about.p2": "Cuando no estoy escribiendo código, me encontrarás explorando nuevas tecnologías, contribuyendo al código abierto o esbozando ideas para el próximo gran proyecto.", // [PERSONAL]
-        "about.p3": "Creo que los mejores productos surgen de la intersección entre <strong>código limpio, UX reflexivo y comunicación clara.</strong>", // [PERSONAL]
+        "about.p1": "Soy un <strong>desarrollador apasionado</strong> que ama construir cosas en internet. Mi trabajo está impulsado por la curiosidad, la precisión y la apreciación del buen diseño.",
+        "about.p2": "Cuando no estoy escribiendo código, me encontrarás explorando nuevas tecnologías, contribuyendo al código abierto o esbozando ideas para el próximo gran proyecto.",
+        "about.p3": "Creo que los mejores productos surgen de la intersección entre <strong>código limpio, UX reflexivo y comunicación clara.</strong>",
         "about.stat1": "Años de Experiencia", "about.stat2": "Proyectos Completados", "about.stat3": "Tecnologías Dominadas", "about.stat4": "Compromiso con la Calidad",
         "skills.tag": "Lo Que Sé", "skills.title1": "Mis ", "skills.title2": "Habilidades",
         "skills.s1": "Marcado semántico, diseños modernos, diseño responsivo.",
@@ -1155,12 +1087,12 @@
         "skills.s5": "SQL, diseño de esquemas, consultas y optimización.",
         "skills.s6": "Control de versiones, ramas, colaboración.",
         "projects.tag": "Trabajo Destacado", "projects.title1": "Proyectos ", "projects.title2": "Seleccionados",
-        "projects.p1.desc": "Una descripción breve y convincente de lo que hace este proyecto, el problema que resuelve y lo que lo hace interesante o único.", // [PERSONAL]
-        "projects.p2.desc": "Describe lo que construiste, las tecnologías involucradas y cualquier resultado o impacto que tuvo.",                           // [PERSONAL]
-        "projects.p3.desc": "Destaca el aspecto más impresionante: ya sea la escala, el dominio del problema, el stack tecnológico o el resultado logrado.", // [PERSONAL]
+        "projects.p1.desc": "Una descripción breve y convincente de lo que hace este proyecto, el problema que resuelve y lo que lo hace interesante o único.",
+        "projects.p2.desc": "Describe lo que construiste, las tecnologías involucradas y cualquier resultado o impacto que tuvo.",
+        "projects.p3.desc": "Destaca el aspecto más impresionante: ya sea la escala, el dominio del problema, el stack tecnológico o el resultado logrado.",
         "projects.viewLink": "Ver en GitHub",
         "contact.tag": "Di Hola", "contact.title1": "Vamos a ", "contact.title2": "Conectar", "contact.bgWord": "HOLA",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Currículum ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "Currículum ↗",
         "footer.rights": "Todos los derechos reservados.", "footer.built": "Diseñado y Construido con <span>♥</span>"
       },
 
@@ -1168,13 +1100,13 @@
       de: {
         "nav.about": "Über mich", "nav.skills": "Fähigkeiten", "nav.projects": "Projekte", "nav.contact": "Kontakt",
         "hero.eyebrow": "Offen für neue Möglichkeiten",
-        "hero.role": "Flutter-Architekt &amp; Problemlöser",                        // [PERSONAL]
-        "hero.desc": "Ich baue saubere, durchdachte digitale Erlebnisse. Leidenschaftlich darin, komplexe Probleme in elegante, intuitive Lösungen zu verwandeln.", // [PERSONAL]
+        "hero.role": "Flutter-Architekt &amp; Problemlöser",
+        "hero.desc": "Ich baue saubere, durchdachte digitale Erlebnisse. Leidenschaftlich darin, komplexe Probleme in elegante, intuitive Lösungen zu verwandeln.",
         "hero.cta1": "Meine Arbeit ansehen", "hero.cta2": "Kontakt aufnehmen", "hero.scroll": "Scrollen zum Erkunden",
         "about.tag": "Über Mich", "about.title1": "Gestalten mit", "about.title2": "Sinn",
-        "about.p1": "Ich bin ein <strong>leidenschaftlicher Entwickler</strong>, der es liebt, Dinge im Internet zu bauen. Meine Arbeit wird von Neugier, Präzision und einer tiefen Wertschätzung für gutes Design angetrieben.", // [PERSONAL]
-        "about.p2": "Wenn ich keinen Code schreibe, erkunde ich neue Technologien, trage zu Open Source bei oder skizziere Ideen für das nächste große Projekt.", // [PERSONAL]
-        "about.p3": "Ich glaube, dass die besten Produkte an der Schnittstelle von <strong>sauberem Code, durchdachter UX und klarer Kommunikation</strong> entstehen.", // [PERSONAL]
+        "about.p1": "Ich bin ein <strong>leidenschaftlicher Entwickler</strong>, der es liebt, Dinge im Internet zu bauen. Meine Arbeit wird von Neugier, Präzision und einer tiefen Wertschätzung für gutes Design angetrieben.",
+        "about.p2": "Wenn ich keinen Code schreibe, erkunde ich neue Technologien, trage zu Open Source bei oder skizziere Ideen für das nächste große Projekt.",
+        "about.p3": "Ich glaube, dass die besten Produkte an der Schnittstelle von <strong>sauberem Code, durchdachter UX und klarer Kommunikation</strong> entstehen.",
         "about.stat1": "Jahre Erfahrung", "about.stat2": "Abgeschlossene Projekte", "about.stat3": "Beherrschte Technologien", "about.stat4": "Qualitätsverpflichtung",
         "skills.tag": "Was ich kann", "skills.title1": "Meine ", "skills.title2": "Fähigkeiten",
         "skills.s1": "Semantisches Markup, moderne Layouts, responsives Design.",
@@ -1184,12 +1116,12 @@
         "skills.s5": "SQL, Schema-Design, Abfragen und Optimierung.",
         "skills.s6": "Versionskontrolle, Branching, Zusammenarbeit.",
         "projects.tag": "Ausgewählte Arbeit", "projects.title1": "Ausgewählte ", "projects.title2": "Projekte",
-        "projects.p1.desc": "Eine kurze, überzeugende Beschreibung dessen, was dieses Projekt macht, welches Problem es löst und was es interessant oder einzigartig macht.", // [PERSONAL]
-        "projects.p2.desc": "Beschreibe, was du gebaut hast, die beteiligten Technologien und welche Ergebnisse oder Auswirkungen es hatte.",                              // [PERSONAL]
-        "projects.p3.desc": "Hebe den beeindruckendsten Aspekt hervor — sei es der Umfang, die Problemdomäne, der Tech-Stack oder das erzielte Ergebnis.",                // [PERSONAL]
+        "projects.p1.desc": "Eine kurze, überzeugende Beschreibung dessen, was dieses Projekt macht, welches Problem es löst und was es interessant oder einzigartig macht.",
+        "projects.p2.desc": "Beschreibe, was du gebaut hast, die beteiligten Technologien und welche Ergebnisse oder Auswirkungen es hatte.",
+        "projects.p3.desc": "Hebe den beeindruckendsten Aspekt hervor — sei es der Umfang, die Problemdomäne, der Tech-Stack oder das erzielte Ergebnis.",
         "projects.viewLink": "Auf GitHub ansehen",
         "contact.tag": "Sag Hallo", "contact.title1": "Lass uns ", "contact.title2": "verbinden", "contact.bgWord": "HALLO",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Lebenslauf ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "Lebenslauf ↗",
         "footer.rights": "Alle Rechte vorbehalten.", "footer.built": "Entworfen &amp; gebaut mit <span>♥</span>"
       },
 
@@ -1197,13 +1129,13 @@
       fr: {
         "nav.about": "À propos", "nav.skills": "Compétences", "nav.projects": "Projets", "nav.contact": "Contact",
         "hero.eyebrow": "Disponible pour de nouvelles opportunités",
-        "hero.role": "Architecte Flutter &amp; Résolveur de Problèmes",             // [PERSONAL]
-        "hero.desc": "Je crée des expériences numériques propres et réfléchies. Passionné par la transformation de problèmes complexes en solutions élégantes et intuitives.", // [PERSONAL]
+        "hero.role": "Architecte Flutter &amp; Résolveur de Problèmes",
+        "hero.desc": "Je crée des expériences numériques propres et réfléchies. Passionné par la transformation de problèmes complexes en solutions élégantes et intuitives.",
         "hero.cta1": "Voir Mon Travail", "hero.cta2": "Me Contacter", "hero.scroll": "Défiler pour explorer",
         "about.tag": "À Propos", "about.title1": "Créer avec", "about.title2": "intention",
-        "about.p1": "Je suis un <strong>développeur passionné</strong> qui aime construire des choses sur internet. Mon travail est guidé par la curiosité, la précision et une profonde appréciation du bon design.", // [PERSONAL]
-        "about.p2": "Quand je n'écris pas de code, j'explore de nouvelles technologies, contribue à l'open-source, ou esquisse des idées pour le prochain grand projet.", // [PERSONAL]
-        "about.p3": "Je crois que les meilleurs produits naissent de l'intersection entre <strong>code propre, UX réfléchi et communication claire.</strong>", // [PERSONAL]
+        "about.p1": "Je suis un <strong>développeur passionné</strong> qui aime construire des choses sur internet. Mon travail est guidé par la curiosité, la précision et une profonde appréciation du bon design.",
+        "about.p2": "Quand je n'écris pas de code, j'explore de nouvelles technologies, contribue à l'open-source, ou esquisse des idées pour le prochain grand projet.",
+        "about.p3": "Je crois que les meilleurs produits naissent de l'intersection entre <strong>code propre, UX réfléchi et communication claire.</strong>",
         "about.stat1": "Années d'Expérience", "about.stat2": "Projets Réalisés", "about.stat3": "Technologies Maîtrisées", "about.stat4": "Engagement Qualité",
         "skills.tag": "Ce que je sais", "skills.title1": "Mes ", "skills.title2": "Compétences",
         "skills.s1": "Balisage sémantique, mises en page modernes, design responsive.",
@@ -1213,12 +1145,12 @@
         "skills.s5": "SQL, conception de schémas, requêtes et optimisation.",
         "skills.s6": "Contrôle de version, branches, collaboration.",
         "projects.tag": "Travaux Sélectionnés", "projects.title1": "Projets ", "projects.title2": "Choisis",
-        "projects.p1.desc": "Une description brève et convaincante de ce que fait ce projet, le problème qu'il résout et ce qui le rend intéressant ou unique.", // [PERSONAL]
-        "projects.p2.desc": "Décrivez ce que vous avez construit, les technologies impliquées et les résultats ou l'impact que cela a eu.",                   // [PERSONAL]
-        "projects.p3.desc": "Mettez en valeur l'aspect le plus impressionnant — l'échelle, le domaine du problème, la pile technologique ou le résultat obtenu.", // [PERSONAL]
+        "projects.p1.desc": "Une description brève et convaincante de ce que fait ce projet, le problème qu'il résout et ce qui le rend intéressant ou unique.",
+        "projects.p2.desc": "Décrivez ce que vous avez construit, les technologies impliquées et les résultats ou l'impact que cela a eu.",
+        "projects.p3.desc": "Mettez en valeur l'aspect le plus impressionnant — l'échelle, le domaine du problème, la pile technologique ou le résultat obtenu.",
         "projects.viewLink": "Voir sur GitHub",
         "contact.tag": "Dites Bonjour", "contact.title1": "Entrons en ", "contact.title2": "Contact", "contact.bgWord": "BONJOUR",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "CV ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "CV ↗",
         "footer.rights": "Tous droits réservés.", "footer.built": "Conçu &amp; Développé avec <span>♥</span>"
       },
 
@@ -1226,13 +1158,13 @@
       pt: {
         "nav.about": "Sobre", "nav.skills": "Habilidades", "nav.projects": "Projetos", "nav.contact": "Contato",
         "hero.eyebrow": "Disponível para oportunidades",
-        "hero.role": "Arquiteto de Flutter &amp; Solucionador de Problemas",        // [PERSONAL]
-        "hero.desc": "Crio experiências digitais limpas e cuidadosas. Apaixonado por transformar problemas complexos em soluções elegantes e intuitivas.", // [PERSONAL]
+        "hero.role": "Arquiteto de Flutter &amp; Solucionador de Problemas",
+        "hero.desc": "Crio experiências digitais limpas e cuidadosas. Apaixonado por transformar problemas complexos em soluções elegantes e intuitivas.",
         "hero.cta1": "Ver Meu Trabalho", "hero.cta2": "Entre em Contato", "hero.scroll": "Role para explorar",
         "about.tag": "Sobre Mim", "about.title1": "Criando com", "about.title2": "propósito",
-        "about.p1": "Sou um <strong>desenvolvedor apaixonado</strong> que ama construir coisas na internet. Meu trabalho é guiado por curiosidade, precisão e uma profunda apreciação pelo bom design.", // [PERSONAL]
-        "about.p2": "Quando não estou escrevendo código, estou explorando novas tecnologias, contribuindo para o open-source ou esboçando ideias para o próximo grande projeto.", // [PERSONAL]
-        "about.p3": "Acredito que os melhores produtos vêm da interseção entre <strong>código limpo, UX cuidadoso e comunicação clara.</strong>", // [PERSONAL]
+        "about.p1": "Sou um <strong>desenvolvedor apaixonado</strong> que ama construir coisas na internet. Meu trabalho é guiado por curiosidade, precisão e uma profunda apreciação pelo bom design.",
+        "about.p2": "Quando não estou escrevendo código, estou explorando novas tecnologias, contribuindo para o open-source ou esboçando ideias para o próximo grande projeto.",
+        "about.p3": "Acredito que os melhores produtos vêm da interseção entre <strong>código limpo, UX cuidadoso e comunicação clara.</strong>",
         "about.stat1": "Anos de Experiência", "about.stat2": "Projetos Concluídos", "about.stat3": "Tecnologias Dominadas", "about.stat4": "Compromisso com Qualidade",
         "skills.tag": "O que eu sei", "skills.title1": "Minhas ", "skills.title2": "Habilidades",
         "skills.s1": "Marcação semântica, layouts modernos, design responsivo.",
@@ -1242,12 +1174,12 @@
         "skills.s5": "SQL, design de esquemas, consultas e otimização.",
         "skills.s6": "Controle de versão, branches, colaboração.",
         "projects.tag": "Trabalho em Destaque", "projects.title1": "Projetos ", "projects.title2": "Selecionados",
-        "projects.p1.desc": "Uma descrição breve e convincente do que este projeto faz, o problema que resolve e o que o torna interessante ou único.", // [PERSONAL]
-        "projects.p2.desc": "Descreva o que você construiu, as tecnologias envolvidas e quaisquer resultados ou impacto que teve.",                    // [PERSONAL]
-        "projects.p3.desc": "Destaque o aspecto mais impressionante — a escala, o domínio do problema, a stack tecnológica ou o resultado alcançado.", // [PERSONAL]
+        "projects.p1.desc": "Uma descrição breve e convincente do que este projeto faz, o problema que resolve e o que o torna interessante ou único.",
+        "projects.p2.desc": "Descreva o que você construiu, as tecnologias envolvidas e quaisquer resultados ou impacto que teve.",
+        "projects.p3.desc": "Destaque o aspecto mais impressionante — a stack tecnológica ou o resultado alcançado.",
         "projects.viewLink": "Ver no GitHub",
         "contact.tag": "Diga Olá", "contact.title1": "Vamos nos ", "contact.title2": "Conectar", "contact.bgWord": "OLÁ",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Currículo ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "Currículo ↗",
         "footer.rights": "Todos os direitos reservados.", "footer.built": "Projetado &amp; Construído com <span>♥</span>"
       },
 
@@ -1255,13 +1187,13 @@
       hi: {
         "nav.about": "परिचय", "nav.skills": "कौशल", "nav.projects": "परियोजनाएं", "nav.contact": "संपर्क",
         "hero.eyebrow": "अवसरों के लिए उपलब्ध",
-        "hero.role": "Flutter Architect &amp; Problem Solver",                        // [PERSONAL]
-        "hero.desc": "मैं स्वच्छ और सुविचारित डिजिटल अनुभव बनाता हूँ। जटिल समस्याओं को सुंदर, सहज समाधानों में बदलने का जुनून।", // [PERSONAL]
+        "hero.role": "Flutter Architect &amp; Problem Solver",
+        "hero.desc": "मैं स्वच्छ और सुविचारित डिजिटल अनुभव बनाता हूँ। जटिल समस्याओं को सुंदर, सहज समाधानों में बदलने का जुनून।",
         "hero.cta1": "मेरा काम देखें", "hero.cta2": "संपर्क करें", "hero.scroll": "और देखने के लिए स्क्रॉल करें",
         "about.tag": "मेरे बारे में", "about.title1": "बना रहा हूँ", "about.title2": "उद्देश्य के साथ",
-        "about.p1": "मैं एक <strong>उत्साही डेवलपर</strong> हूँ जो इंटरनेट पर चीजें बनाना पसंद करता है। मेरा काम जिज्ञासा, सटीकता और अच्छे डिज़ाइन की गहरी समझ से प्रेरित है।", // [PERSONAL]
-        "about.p2": "जब मैं कोड नहीं लिख रहा होता, तो आप मुझे नई तकनीकों की खोज करते, ओपन-सोर्स में योगदान देते, या अगले बड़े प्रोजेक्ट के लिए विचार बनाते पाएंगे।", // [PERSONAL]
-        "about.p3": "मेरा मानना है कि सर्वश्रेष्ठ उत्पाद <strong>स्वच्छ कोड, सुविचारित UX और स्पष्ट संचार</strong> के मेल से बनते हैं।", // [PERSONAL]
+        "about.p1": "मैं एक <strong>उत्साही डेवलपर</strong> हूँ जो इंटरनेट पर चीजें बनाना पसंद करता है। मेरा काम जिज्ञासा, सटीकता और अच्छे डिज़ाइन की गहरी समझ से प्रेरित है।",
+        "about.p2": "जब मैं कोड नहीं लिख रहा होता, तो आप मुझे नई तकनीकों की खोज करते, ओपन-सोर्स में योगदान देते, या अगले बड़े प्रोजेक्ट के लिए विचार बनाते पाएंगे।",
+        "about.p3": "मेरा मानना है कि सर्वश्रेष्ठ उत्पाद <strong>स्वच्छ कोड, सुविचारित UX और स्पष्ट संचार</strong> के मेल से बनते हैं।",
         "about.stat1": "वर्षों का अनुभव", "about.stat2": "पूर्ण परियोजनाएं", "about.stat3": "प्रौद्योगिकियाँ सीखी", "about.stat4": "गुणवत्ता की प्रतिबद्धता",
         "skills.tag": "मुझे क्या आता है", "skills.title1": "मेरे ", "skills.title2": "कौशल",
         "skills.s1": "सिमेंटिक मार्कअप, आधुनिक लेआउट, रेस्पॉन्सिव डिज़ाइन।",
@@ -1271,16 +1203,19 @@
         "skills.s5": "SQL, स्कीमा डिज़ाइन, क्वेरी और ऑप्टिमाइज़ेशन।",
         "skills.s6": "वर्शन कंट्रोल, ब्रांचिंग, सहयोग।",
         "projects.tag": "प्रमुख कार्य", "projects.title1": "चुनी हुई ", "projects.title2": "परियोजनाएं",
-        "projects.p1.desc": "इस परियोजना के बारे में एक संक्षिप्त, आकर्षक विवरण — यह क्या करती है, किस समस्या को हल करती है और इसे विशेष क्या बनाता है।", // [PERSONAL]
-        "projects.p2.desc": "बताएं कि आपने क्या बनाया, कौन सी तकनीकें इस्तेमाल कीं और इसका क्या प्रभाव रहा।",                                           // [PERSONAL]
-        "projects.p3.desc": "सबसे प्रभावशाली पहलू उजागर करें — चाहे वह पैमाना हो, समस्या का क्षेत्र, टेक स्टैक, या प्राप्त परिणाम।",                    // [PERSONAL]
+        "projects.p1.desc": "इस परियोजना के बारे में एक संक्षिप्त, आकर्षक विवरण — यह क्या करती है, किस समस्या को हल करती है और इसे विशेष क्या बनाता है।",
+        "projects.p2.desc": "बताएं कि आपने क्या बनाया, कौन सी तकनीकें इस्तेमाल कीं और इसका क्या प्रभाव रहा।",
+        "projects.p3.desc": "सबसे प्रभावशाली पहलू उजागर करें — चाहे वह पैमाना हो, समस्या का क्षेत्र, टेक स्टैक, या प्राप्त परिणाम।",
         "projects.viewLink": "GitHub पर देखें",
         "contact.tag": "नमस्ते कहें", "contact.title1": "आइए ", "contact.title2": "जुड़ें", "contact.bgWord": "नमस्ते",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "रेज़्युमे ↗",
+        "contact.github": "GitHub ↗", "contact.linkedin": "LinkedIn ↗", "contact.resume": "रेज़्युमे ↗",
         "footer.rights": "सर्वाधिकार सुरक्षित।", "footer.built": "डिज़ाइन &amp; निर्मित <span>♥</span> के साथ"
       }
 
-    }; // end i18n
+    };
+
+    // ── Update current year dynamically ───────────────────────
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
 
     // ── Language switcher logic ───────────────────────────────
     let currentLang = 'en';
@@ -1299,7 +1234,6 @@
           if (t[key] !== undefined) el.innerHTML = t[key];
         });
 
-        // Update the large background word in contact section
         const cs = document.getElementById('contact');
         if (t['contact.bgWord']) cs.setAttribute('data-bg-word', t['contact.bgWord']);
 
