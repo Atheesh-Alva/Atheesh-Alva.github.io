@@ -938,8 +938,15 @@
          You can also duplicate or delete cards to add/remove skills -->
     <div class="skills-grid">
       <div class="skill-card reveal" style="--level: 90%">
-        <div class="skill-icon">⚡</div>
-        <div class="skill-name">HTML / CSS</div>
+        <div class="skill-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" style="vertical-align: middle;">
+            <path d="M14.33 1.18L5.22 10.29L14.33 19.41H23.44L14.33 10.29L23.44 1.18H14.33Z" fill="#02569B" />
+            <path d="M14.33 19.41L11.56 22.18L8.79 19.41L11.56 16.64L14.33 19.41Z" fill="#0175C2" />
+            <path d="M14.33 19.41H23.44L20.67 22.18H11.56L14.33 19.41Z" fill="#0175C2" />
+            <path d="M11.56 16.64L5.22 10.29L11.56 3.94V16.64Z" fill="#13B9FD" />
+          </svg>
+        </div>
+        <div class="skill-name">Flutter</div>
         <div class="skill-desc" data-i18n="skills.s1">Semantic markup, modern layouts, responsive design.</div>
         <div class="skill-bar">
           <div class="skill-fill"></div>
@@ -1350,13 +1357,24 @@
   </script>
 
   <script>
-    document.addEventListener("DOMContentLoaded", function () {
+    (function () {
       const startYear = 2019;
-      const currentYear = new Date().getFullYear();
-      const yearsOfExp = currentYear - startYear;
+      const startMonth = 8; // September (Months are 0-11 in JS: Jan=0, Sep=8)
 
-      document.getElementById("experience-years").textContent = yearsOfExp + "+";
-    });
+      const now = new Date();
+      const currentYear = now.getFullYear();
+      const currentMonth = now.getMonth();
+
+      // 1. Calculate the raw year difference (e.g., 2026 - 2019 = 7)
+      let yearsOfExp = currentYear - startYear;
+
+      if (currentMonth < startMonth) {
+        yearsOfExp--;
+      }
+
+      // This will now correctly output "6" for today (March 2026)
+      document.getElementById("experience-years").textContent = yearsOfExp;
+    })();
   </script>
 
 </body>
