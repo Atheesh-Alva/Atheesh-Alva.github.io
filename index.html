@@ -145,34 +145,128 @@
       width: 100%;
     }
 
-    /* Language Switcher */
+    /* Language Switcher — Dropdown */
     .lang-switcher {
-      display: flex;
-      align-items: center;
-      gap: 5px;
+      position: relative;
     }
 
-    .lang-btn {
+    .lang-trigger {
+      display: flex;
+      align-items: center;
+      gap: 8px;
       background: none;
       border: 1px solid var(--border);
       color: var(--muted);
-      font-size: 0.62rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
-      padding: 5px 9px;
+      padding: 9px 14px;
       cursor: none;
-      transition: all 0.3s;
       font-family: 'DM Sans', sans-serif;
+      font-size: 0.74rem;
+      letter-spacing: 0.04em;
+      transition: all 0.3s;
+      white-space: nowrap;
     }
 
-    .lang-btn:hover,
-    .lang-btn.active {
+    .lang-trigger .globe {
+      font-size: 0.85rem;
+      opacity: 0.6;
+    }
+
+    .lang-trigger .trigger-label {
+      min-width: 64px;
+      text-align: left;
+    }
+
+    .lang-trigger .chevron {
+      font-size: 0.45rem;
+      opacity: 0.4;
+      transition: transform 0.25s ease;
+      display: inline-block;
+    }
+
+    .lang-trigger:hover,
+    .lang-switcher.open .lang-trigger {
       border-color: var(--gold);
       color: var(--gold);
     }
 
-    .lang-btn.active {
+    .lang-switcher.open .chevron {
+      transform: rotate(180deg);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 220px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      z-index: 500;
+      opacity: 0;
+      transform: translateY(-8px) scaleY(0.94);
+      transform-origin: top right;
+      pointer-events: none;
+      transition: opacity 0.22s ease, transform 0.22s ease;
+    }
+
+    .lang-switcher.open .lang-dropdown {
+      opacity: 1;
+      transform: translateY(0) scaleY(1);
+      pointer-events: all;
+    }
+
+    .lang-option {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 16px;
+      cursor: none;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.18s;
+    }
+
+    .lang-option:last-child {
+      border-bottom: none;
+    }
+
+    .lang-option:hover {
+      background: rgba(201, 169, 110, 0.06);
+    }
+
+    .lang-option.active {
       background: rgba(201, 169, 110, 0.1);
+    }
+
+    .lang-opt-info {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .lang-native {
+      font-size: 0.84rem;
+      color: var(--text);
+    }
+
+    .lang-option.active .lang-native {
+      color: var(--gold);
+    }
+
+    .lang-en-name {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .lang-check {
+      color: var(--gold);
+      font-size: 0.7rem;
+      opacity: 0;
+      flex-shrink: 0;
+    }
+
+    .lang-option.active .lang-check {
+      opacity: 1;
     }
 
     /* Page fade transition */
@@ -212,6 +306,28 @@
       padding: 160px 60px 100px;
       position: relative;
       overflow: hidden;
+    }
+
+    /* Two-column grid inside hero */
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .hero-right {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 0;
     }
 
     #hero::after {
@@ -284,67 +400,168 @@
     }
 
     .hero-desc {
-      max-width: 480px;
       font-size: 0.95rem;
       color: var(--muted);
-      margin-bottom: 56px;
+      margin-bottom: 0;
       animation: fadeUp 1s ease 0.9s both;
+      line-height: 1.8;
     }
 
-    .hero-cta {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
+    /* Hero availability badge */
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 16px 9px 12px;
+      border: 1px solid rgba(76, 175, 130, 0.3);
+      background: rgba(76, 175, 130, 0.06);
+      width: 100%;
+      margin-bottom: 2px;
+      animation: fadeUp 1s ease 1.0s both;
+    }
+
+    .hero-badge-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4caf82;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 0 rgba(76, 175, 130, 0.5);
+      animation: pulse-dot 2.4s ease-in-out infinite;
+    }
+
+    @keyframes pulse-dot {
+      0% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 130, 0.5);
+      }
+
+      60% {
+        box-shadow: 0 0 0 8px rgba(76, 175, 130, 0);
+      }
+
+      100% {
+        box-shadow: 0 0 0 0 rgba(76, 175, 130, 0);
+      }
+    }
+
+    .hero-badge-text {
+      font-size: 0.66rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-badge-text strong {
+      color: #4caf82;
+      font-weight: 500;
+    }
+
+    /* Hero quick-info tiles (2×2 grid) */
+    .hero-info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2px;
+      margin-bottom: 2px;
       animation: fadeUp 1s ease 1.1s both;
     }
 
-    .btn-primary {
-      padding: 14px 36px;
-      background: var(--gold);
-      color: var(--bg);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-weight: 500;
-      transition: all 0.3s;
-      position: relative;
-      overflow: hidden;
+    .hero-info-tile {
+      background: var(--surface);
+      padding: 20px 22px;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      transition: background 0.25s;
     }
 
-    .btn-primary::before {
+    .hero-info-tile:hover {
+      background: #16161f;
+    }
+
+    .hero-info-tile-label {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-info-tile-value {
+      font-size: 0.82rem;
+      color: var(--text);
+      font-weight: 400;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-info-tile-value em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    /* Hero social link buttons (2-col row) */
+    .hero-links {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      animation: fadeUp 1s ease 1.2s both;
+      width: 100%;
+      gap: 2px;
+    }
+
+    .hero-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 18px 22px;
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: var(--surface);
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s;
+      white-space: nowrap;
+    }
+
+    .hero-link::before {
       content: '';
       position: absolute;
       inset: 0;
-      background: var(--white);
+      background: rgba(201, 169, 110, 0.08);
       transform: scaleX(0);
       transform-origin: left;
-      transition: transform 0.4s cubic-bezier(.25, .46, .45, .94);
+      transition: transform 0.35s cubic-bezier(.25, .46, .45, .94);
     }
 
-    .btn-primary:hover::before {
+    .hero-link:hover::before {
       transform: scaleX(1);
     }
 
-    .btn-primary span {
+    .hero-link:hover {
+      color: var(--gold);
+    }
+
+    .hero-link span {
       position: relative;
       z-index: 1;
     }
 
-    .btn-secondary {
-      padding: 14px 36px;
-      border: 1px solid var(--border);
-      color: var(--muted);
-      text-decoration: none;
-      font-size: 0.78rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      transition: all 0.3s;
+    .hero-link .hl-arrow {
+      position: relative;
+      z-index: 1;
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      transition: transform 0.3s cubic-bezier(.25, .46, .45, .94), color 0.3s;
     }
 
-    .btn-secondary:hover {
-      border-color: var(--gold);
+    .hero-link:hover .hl-arrow {
+      transform: translate(2px, -2px);
       color: var(--gold);
+    }
+
+    /* Ensure nav doesn't cover section headings on scroll */
+    section[id] {
+      scroll-margin-top: 80px;
     }
 
     .hero-scroll {
@@ -736,20 +953,61 @@
     .social-links {
       display: flex;
       justify-content: center;
-      gap: 36px;
+      gap: 12px;
       list-style: none;
+      flex-wrap: wrap;
     }
 
-    .social-links a {
-      font-size: 0.72rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
+    .social-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      border: 1px solid var(--border);
       color: var(--muted);
       text-decoration: none;
-      transition: color 0.3s;
+      font-size: 0.7rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s, border-color 0.3s;
     }
 
-    .social-links a:hover {
+    .social-link-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(201, 169, 110, 0.06);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.32s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .social-link-btn:hover::before {
+      transform: scaleX(1);
+    }
+
+    .social-link-btn:hover {
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    .social-link-btn .link-text {
+      position: relative;
+      z-index: 1;
+    }
+
+    .social-link-btn .link-arrow {
+      position: relative;
+      z-index: 1;
+      font-size: 0.75rem;
+      color: var(--gold-dim);
+      transition: transform 0.28s cubic-bezier(.25, .46, .45, .94), color 0.3s;
+    }
+
+    .social-link-btn:hover .link-arrow {
+      transform: translate(2px, -2px);
       color: var(--gold);
     }
 
@@ -785,6 +1043,459 @@
       }
     }
 
+    /* ── Case Studies Section ──────────────────────────────── */
+    #casestudy {
+      background: var(--bg);
+    }
+
+    /* List of case studies */
+    .cs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    /* Each accordion row */
+    .cs-item {
+      background: var(--surface);
+      overflow: hidden;
+      transition: background 0.3s;
+    }
+
+    .cs-item.open {
+      background: #15151e;
+    }
+
+    /* Collapsed header row */
+    .cs-item-header {
+      display: grid;
+      grid-template-columns: 56px 1fr auto auto 48px;
+      align-items: center;
+      gap: 24px;
+      padding: 28px 36px;
+      cursor: none;
+      transition: background 0.2s;
+      user-select: none;
+    }
+
+    .cs-item-header:hover {
+      background: rgba(201, 169, 110, 0.04);
+    }
+
+    .cs-item.open .cs-item-header {
+      background: rgba(201, 169, 110, 0.06);
+    }
+
+    .cs-item-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--border);
+      line-height: 1;
+      transition: color 0.3s;
+    }
+
+    .cs-item.open .cs-item-num,
+    .cs-item-header:hover .cs-item-num {
+      color: rgba(201, 169, 110, 0.35);
+    }
+
+    .cs-item-info {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .cs-item-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.45rem;
+      font-weight: 400;
+      color: var(--white);
+      transition: color 0.3s;
+    }
+
+    .cs-item-header:hover .cs-item-title {
+      color: var(--gold);
+    }
+
+    .cs-item-tags {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .cs-tag {
+      font-size: 0.6rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold-dim);
+      padding: 3px 10px;
+      border: 1px solid var(--border);
+      white-space: nowrap;
+    }
+
+    /* Key metric pills shown in the collapsed row */
+    .cs-item-pills {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cs-pill {
+      font-size: 0.65rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      background: rgba(76, 175, 130, 0.1);
+      color: #4caf82;
+      border: 1px solid rgba(76, 175, 130, 0.2);
+      white-space: nowrap;
+    }
+
+    .cs-pill.negative {
+      background: rgba(201, 169, 110, 0.08);
+      color: var(--gold);
+      border-color: rgba(201, 169, 110, 0.2);
+    }
+
+    /* Expand/collapse toggle */
+    .cs-toggle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 1.1rem;
+      font-weight: 300;
+      transition: all 0.35s cubic-bezier(.25, .46, .45, .94);
+      flex-shrink: 0;
+    }
+
+    .cs-item.open .cs-toggle {
+      border-color: var(--gold);
+      color: var(--gold);
+      background: rgba(201, 169, 110, 0.08);
+      transform: rotate(45deg);
+    }
+
+    /* Expandable detail panel */
+    .cs-panel {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.55s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .cs-panel-inner {
+      padding: 0 36px 40px 36px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cs-panel-summary {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.9;
+      padding: 32px 0 36px 0;
+      max-width: 720px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 36px;
+    }
+
+    /* Metrics grid inside panel */
+    .cs-metrics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 2px;
+      margin-bottom: 44px;
+    }
+
+    .cs-metric {
+      background: var(--bg);
+      padding: 28px 24px;
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .cs-metric:hover {
+      transform: translateY(-3px);
+    }
+
+    .cs-metric::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      height: 2px;
+      width: 0;
+      background: var(--gold);
+      transition: width 0.4s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .cs-metric:hover::after {
+      width: 100%;
+    }
+
+    .cs-metric-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    .cs-before-after {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .cs-before {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--muted);
+      text-decoration: line-through;
+      text-decoration-color: rgba(201, 169, 110, 0.35);
+    }
+
+    .cs-arrow {
+      color: var(--gold-dim);
+      font-size: 0.8rem;
+    }
+
+    .cs-after {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 300;
+      color: var(--gold);
+    }
+
+    .cs-delta {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      color: #4caf82;
+      text-transform: uppercase;
+      background: rgba(76, 175, 130, 0.1);
+      padding: 2px 7px;
+      align-self: flex-end;
+      margin-bottom: 3px;
+    }
+
+    /* Two-col detail body */
+    .cs-body {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: start;
+    }
+
+    /* Findings */
+    .cs-finding {
+      background: var(--surface);
+      padding: 24px 22px;
+      border-left: 2px solid var(--gold-dim);
+      margin-bottom: 16px;
+    }
+
+    .cs-finding:last-child {
+      margin-bottom: 0;
+    }
+
+    .cs-finding-title {
+      font-size: 0.68rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 7px;
+    }
+
+    .cs-finding-text {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    /* Timeline */
+    .cs-timeline {
+      position: relative;
+      padding-left: 24px;
+    }
+
+    .cs-timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 6px;
+      width: 1px;
+      height: calc(100% - 6px);
+      background: linear-gradient(to bottom, var(--gold), transparent);
+    }
+
+    .cs-step {
+      position: relative;
+      margin-bottom: 32px;
+      padding-left: 24px;
+    }
+
+    .cs-step:last-child {
+      margin-bottom: 0;
+    }
+
+    .cs-step::before {
+      content: '';
+      position: absolute;
+      left: -30px;
+      top: 6px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px var(--bg), 0 0 0 4px var(--gold-dim);
+    }
+
+    .cs-step-tag {
+      font-size: 0.58rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 5px;
+    }
+
+    .cs-step-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.15rem;
+      font-weight: 400;
+      color: var(--white);
+      margin-bottom: 6px;
+    }
+
+    .cs-step-desc {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .cs-col-label {
+      font-size: 0.65rem;
+      letter-spacing: 0.28em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .cs-col-label::before {
+      content: '';
+      width: 20px;
+      height: 1px;
+      background: var(--gold);
+    }
+
+    /* Case study document link footer */
+    .cs-doc-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 22px 0 0 0;
+      margin-top: 36px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+
+    .cs-doc-info {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .cs-doc-label {
+      font-size: 0.6rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .cs-doc-name {
+      font-size: 0.82rem;
+      color: var(--text);
+      letter-spacing: 0.02em;
+    }
+
+    .cs-doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 11px 24px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      transition: color 0.3s, border-color 0.3s;
+      white-space: nowrap;
+    }
+
+    .cs-doc-link::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(201, 169, 110, 0.07);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.35s cubic-bezier(.25, .46, .45, .94);
+    }
+
+    .cs-doc-link:hover::before {
+      transform: scaleX(1);
+    }
+
+    .cs-doc-link:hover {
+      color: var(--gold);
+      border-color: var(--gold);
+    }
+
+    .cs-doc-link span {
+      position: relative;
+      z-index: 1;
+    }
+
+    .cs-doc-link .doc-arrow {
+      position: relative;
+      z-index: 1;
+      font-size: 0.72rem;
+      color: var(--gold-dim);
+      transition: transform 0.3s cubic-bezier(.25, .46, .45, .94), color 0.3s;
+    }
+
+    .cs-doc-link:hover .doc-arrow {
+      transform: translate(2px, -2px);
+      color: var(--gold);
+    }
+
+    .cs-doc-unavailable {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 11px 24px;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.68rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      opacity: 0.45;
+      cursor: default;
+    }
+
     @media (max-width: 900px) {
       nav {
         padding: 18px 24px;
@@ -798,6 +1509,19 @@
       section {
         padding-left: 24px;
         padding-right: 24px;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .hero-info-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .hero-links {
+        grid-template-columns: 1fr 1fr;
       }
 
       .about-grid {
@@ -815,13 +1539,31 @@
         text-align: center;
       }
 
-      .lang-switcher {
-        gap: 3px;
+      .lang-dropdown {
+        min-width: 190px;
       }
 
-      .lang-btn {
-        padding: 4px 6px;
-        font-size: 0.58rem;
+      .cs-item-header {
+        grid-template-columns: 40px 1fr 40px;
+        gap: 16px;
+        padding: 22px 20px;
+      }
+
+      .cs-item-pills {
+        display: none;
+      }
+
+      .cs-panel-inner {
+        padding: 0 20px 32px;
+      }
+
+      .cs-body {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .cs-metrics {
+        grid-template-columns: 1fr 1fr;
       }
     }
   </style>
@@ -837,22 +1579,61 @@
        NAV
   ═════════════════════════════════════════════════════ -->
   <nav>
-    <a class="nav-logo" href="#">AA.</a>
-
     <ul class="nav-links">
       <li><a href="#about" data-i18n="nav.about">About</a></li>
       <li><a href="#skills" data-i18n="nav.skills">Skills</a></li>
       <li><a href="#projects" data-i18n="nav.projects">Projects</a></li>
+      <li><a href="#casestudy" data-i18n="nav.casestudy">Case Study</a></li>
       <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
     </ul>
 
-    <div class="lang-switcher">
-      <button class="lang-btn active" data-lang="en">EN</button>
-      <button class="lang-btn" data-lang="es">ES</button>
-      <button class="lang-btn" data-lang="de">DE</button>
-      <button class="lang-btn" data-lang="fr">FR</button>
-      <button class="lang-btn" data-lang="pt">PT</button>
-      <button class="lang-btn" data-lang="hi">HI</button>
+    <div class="lang-switcher" id="langSwitcher">
+      <button class="lang-trigger" id="langTrigger">
+        <span class="globe">🌐</span>
+        <span class="trigger-label" id="langCurrentLabel">English</span>
+        <span class="chevron">▼</span>
+      </button>
+      <div class="lang-dropdown" id="langDropdown">
+        <div class="lang-option active" data-lang="en">
+          <div class="lang-opt-info"><span class="lang-native">English</span></div>
+          <span class="lang-check">✓</span>
+        </div>
+        <div class="lang-option" data-lang="es">
+          <div class="lang-opt-info">
+            <span class="lang-native">Español</span>
+            <span class="lang-en-name">Spanish</span>
+          </div>
+          <span class="lang-check">✓</span>
+        </div>
+        <div class="lang-option" data-lang="de">
+          <div class="lang-opt-info">
+            <span class="lang-native">Deutsch</span>
+            <span class="lang-en-name">German</span>
+          </div>
+          <span class="lang-check">✓</span>
+        </div>
+        <div class="lang-option" data-lang="fr">
+          <div class="lang-opt-info">
+            <span class="lang-native">Français</span>
+            <span class="lang-en-name">French</span>
+          </div>
+          <span class="lang-check">✓</span>
+        </div>
+        <div class="lang-option" data-lang="pt">
+          <div class="lang-opt-info">
+            <span class="lang-native">Português</span>
+            <span class="lang-en-name">Portuguese</span>
+          </div>
+          <span class="lang-check">✓</span>
+        </div>
+        <div class="lang-option" data-lang="hi">
+          <div class="lang-opt-info">
+            <span class="lang-native">हिन्दी</span>
+            <span class="lang-en-name">Hindi</span>
+          </div>
+          <span class="lang-check">✓</span>
+        </div>
+      </div>
     </div>
   </nav>
 
@@ -860,20 +1641,63 @@
        HERO
   ═════════════════════════════════════════════════════ -->
   <section id="hero">
-    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Available for opportunities</p>
+    <div class="hero-grid">
 
-    <h1 class="hero-name">Atheesh<br /><em>Alva</em></h1>
+      <!-- LEFT — identity -->
+      <div class="hero-left">
+        <p class="hero-eyebrow" data-i18n="hero.eyebrow">Available for opportunities</p>
+        <h1 class="hero-name">Atheesh<br /><em>Alva</em></h1>
+        <p class="hero-role" data-i18n="hero.role">Flutter Systems Architect</p>
+        <p class="hero-desc" data-i18n="hero.desc">
+          I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.
+        </p>
+      </div>
 
-    <p class="hero-role" data-i18n="hero.role">Flutter Systems Architect</p>
+      <!-- RIGHT — availability panel -->
+      <div class="hero-right">
 
-    <p class="hero-desc" data-i18n="hero.desc">
-      I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.
-    </p>
+        <!-- Availability badge — full width -->
+        <div class="hero-badge">
+          <div class="hero-badge-dot"></div>
+          <span class="hero-badge-text"><strong>Open to Consultation</strong> &nbsp;·&nbsp; Available for new
+            opportunities</span>
+        </div>
 
-    <div class="hero-cta">
-      <a class="btn-primary" href="#projects"><span data-i18n="hero.cta1">View My Work</span></a>
-      <a class="btn-secondary" href="#contact" data-i18n="hero.cta2">Get in Touch</a>
+        <!-- Quick-info 2×2 tiles -->
+        <!-- ✏️ Update Location, Open to, Focus, and Stack to your own details -->
+        <div class="hero-info-grid">
+          <div class="hero-info-tile">
+            <span class="hero-info-tile-label">Location</span>
+            <span class="hero-info-tile-value">India <em>·</em> Remote</span>
+          </div>
+          <div class="hero-info-tile">
+            <span class="hero-info-tile-label">Open To</span>
+            <span class="hero-info-tile-value">Consultation <em>·</em> Contract</span>
+          </div>
+          <div class="hero-info-tile">
+            <span class="hero-info-tile-label">Focus</span>
+            <span class="hero-info-tile-value">Mobile <em>&</em> Cloud</span>
+          </div>
+          <div class="hero-info-tile">
+            <span class="hero-info-tile-label">Primary Stack</span>
+            <span class="hero-info-tile-value">Flutter <em>·</em> AWS</span>
+          </div>
+        </div>
+
+        <!-- 2-col profile links — GitHub & LinkedIn only -->
+        <div class="hero-links">
+          <a class="hero-link" href="https://github.com/Atheesh-Alva" target="_blank">
+            <span>GitHub</span><span class="hl-arrow">↗</span>
+          </a>
+          <a class="hero-link" href="https://www.linkedin.com/in/atheesh-alva" target="_blank">
+            <span>LinkedIn</span><span class="hl-arrow">↗</span>
+          </a>
+        </div>
+
+      </div>
+
     </div>
+
     <div class="hero-scroll">
       <div class="scroll-line"></div>
       <span data-i18n="hero.scroll">Scroll to explore</span>
@@ -907,16 +1731,16 @@
           <div class="stat-label" data-i18n="about.stat1">Years of Experience</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">4</div>
+          <div class="stat-num">2</div>
           <div class="stat-label" data-i18n="about.stat2">Projects Completed</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">4</div>
-          <div class="stat-label" data-i18n="about.stat3">Technologies Mastered</div>
+          <div class="stat-num">1</div>
+          <div class="stat-label" data-i18n="about.stat4">Projects In Progress</div>
         </div>
         <div class="stat-box">
-          <div class="stat-num">100%</div>
-          <div class="stat-label" data-i18n="about.stat4">Commitment to Quality</div>
+          <div class="stat-num">1</div>
+          <div class="stat-label" data-i18n="about.stat3">Systems Audited</div>
         </div>
       </div>
     </div>
@@ -1007,6 +1831,16 @@
           <div class="skill-fill"></div>
         </div>
       </div>
+      <div class="skill-card reveal" style="--level: 40%">
+        <div class="skill-icon">🏢</div>
+        <div class="skill-name">SAP</div>
+        <div class="skill-desc" data-i18n="skills.s7">Associate Consultant, Business Process Analysis, HANA Database,
+          ABAP Programming,
+          Integration & Testing.</div>
+        <div class="skill-bar">
+          <div class="skill-fill"></div>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -1031,17 +1865,16 @@
           <span class="tag">GraphQL & Restful APIs</span>
           <span class="tag">MySQL</span>
         </div>
-        <a class="project-link" href="https://apps.apple.com/in/app/ostrum/id6447539444Ostrum" target="_blank"
-          data-i18n="projects.viewLink">View on App Store</a>
-        <a class="project-link"
-          href="https://play.google.com/store/apps/details?id=com.ostrumtech.ostrum&pcampaignid=web_share"
-          target="_blank" data-i18n="projects.viewLink">View on Play Store</a>
+        <a class="project-link" href="https://apps.apple.com/us/app/ostrum/id6447539444" target="_blank"
+          data-i18n="projects.appStore">View on App Store</a>
+        <a class="project-link" href="https://play.google.com/store/apps/details?id=com.ostrumtech.ostrum"
+          target="_blank" data-i18n="projects.playStore">View on Play Store</a>
       </div>
       <div class="project-card reveal">
-        <div class="project-num">01</div>
+        <div class="project-num">02</div>
         <h3 class="project-title">Purple Door</h3>
-        <p class="project-desc" data-i18n="projects.p1.desc">
-          A cross platform (Android & iOS) mobile application to handle PRM services at the airports.
+        <p class="project-desc" data-i18n="projects.p2.desc">
+          A cross platform (Android & iOS) mobile application for PRM passengers travelling through airports.
         </p>
         <div class="project-tags">
           <span class="tag">Flutter</span>
@@ -1049,13 +1882,170 @@
           <span class="tag">GraphQL & Restful APIs</span>
           <span class="tag">MySQL</span>
         </div>
-        <a class="project-link" href="https://apps.apple.com/in/app/ostrum/id6447539444Ostrum" target="_blank"
-          data-i18n="projects.viewLink">View on App Store</a>
-        <a class="project-link"
-          href="https://play.google.com/store/apps/details?id=com.ostrumtech.ostrum&pcampaignid=web_share"
-          target="_blank" data-i18n="projects.viewLink">View on Play Store</a>
+        <a class="project-link" href="https://apps.apple.com/us/app/purple-door/id1636455669" target="_blank"
+          data-i18n="projects.appStore">View on App Store</a>
+        <a class="project-link" href="https://play.google.com/store/apps/details?id=com.ostrumtech.purpledoor"
+          target="_blank" data-i18n="projects.playStore">View on Play Store</a>
       </div>
 
+
+    </div>
+  </section>
+
+  <!-- ══════════════════════════════════════════════════
+       CASE STUDIES
+  ═════════════════════════════════════════════════════ -->
+  <section id="casestudy">
+    <div class="reveal">
+      <p class="section-tag">Deep Dive</p>
+      <h2 class="section-title">Case <em>Studies</em></h2>
+    </div>
+
+    <div class="cs-list reveal">
+
+      <!-- ══════════════════════════════════════
+           CASE STUDY 01
+           ✏️ Replace all content with your real data
+      ═══════════════════════════════════════ -->
+      <div class="cs-item" data-cs="0">
+        <div class="cs-item-header">
+          <span class="cs-item-num">01</span>
+          <div class="cs-item-info">
+            <div class="cs-item-title">Architectural Audit & Restructure — Ostrum PRM Platform</div>
+            <div class="cs-item-tags">
+              <span class="cs-tag">Flutter</span>
+              <span class="cs-tag">AWS AppSync</span>
+              <span class="cs-tag">Performance</span>
+              <span class="cs-tag">State Management</span>
+            </div>
+          </div>
+          <div class="cs-item-pills">
+            <span class="cs-pill">↓ ?% Cold Start</span>
+            <span class="cs-pill">↑ ?% Crash-Free</span>
+            <span class="cs-pill negative">↓ ?% API Latency</span>
+          </div>
+          <div class="cs-toggle">+</div>
+        </div>
+        <div class="cs-panel">
+          <div class="cs-panel-inner">
+            <!-- Summary -->
+            <p class="cs-panel-summary">
+              <!-- ✏️ Replace with a 2–3 sentence summary of this case study -->
+              A ground-up architectural review of the live Ostrum Flutter application serving airport PRM operations —
+              identifying bottlenecks, redundant rebuilds, and state management inefficiencies that impacted
+              reliability and response time under real-world concurrency.
+            </p>
+
+            <!-- Metrics -->
+            <!-- ✏️ Replace before/after values and labels with real numbers -->
+            <div class="cs-metrics">
+              <div class="cs-metric">
+                <div class="cs-metric-label">Cold Start Time</div>
+                <div class="cs-before-after">
+                  <span class="cs-before">?s</span><span class="cs-arrow">→</span>
+                  <span class="cs-after">?s</span><span class="cs-delta">↓ ?%</span>
+                </div>
+              </div>
+              <div class="cs-metric">
+                <div class="cs-metric-label">Crash-Free Rate</div>
+                <div class="cs-before-after">
+                  <span class="cs-before">?%</span><span class="cs-arrow">→</span>
+                  <span class="cs-after">?%</span><span class="cs-delta">↑ ?pp</span>
+                </div>
+              </div>
+              <div class="cs-metric">
+                <div class="cs-metric-label">API Response (p95)</div>
+                <div class="cs-before-after">
+                  <span class="cs-before">?ms</span><span class="cs-arrow">→</span>
+                  <span class="cs-after">?ms</span><span class="cs-delta">↓ ?%</span>
+                </div>
+              </div>
+              <div class="cs-metric">
+                <div class="cs-metric-label">Widget Rebuilds / Frame</div>
+                <div class="cs-before-after">
+                  <span class="cs-before">?</span><span class="cs-arrow">→</span>
+                  <span class="cs-after">?</span><span class="cs-delta">↓ ?%</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Detail body -->
+            <div class="cs-body">
+              <!-- Findings -->
+              <div>
+                <p class="cs-col-label">Key Findings</p>
+                <!-- ✏️ Replace each finding with your real audit findings -->
+                <div class="cs-finding">
+                  <div class="cs-finding-title">Unscoped State Propagation</div>
+                  <div class="cs-finding-text">Global state was pushed to the widget tree root, causing full-tree
+                    rebuilds on every minor change. Scoping providers to their minimal subtree reduced unnecessary
+                    renders by over 70%.</div>
+                </div>
+                <div class="cs-finding">
+                  <div class="cs-finding-title">Unbounded API Polling</div>
+                  <div class="cs-finding-text">Background services polled AppSync every 3s without backoff. Migrating to
+                    GraphQL subscriptions eliminated redundant traffic entirely.</div>
+                </div>
+                <div class="cs-finding">
+                  <div class="cs-finding-title">Missing Error Boundaries</div>
+                  <div class="cs-finding-text">Network failures silently crashed sub-trees. Structured error boundaries
+                    and retry queues brought crash-free sessions above 99%.</div>
+                </div>
+              </div>
+
+              <!-- Timeline -->
+              <div>
+                <p class="cs-col-label">Audit & Restructure Phases</p>
+                <!-- ✏️ Replace phases with your actual audit process -->
+                <div class="cs-timeline">
+                  <div class="cs-step">
+                    <div class="cs-step-tag">Phase 01</div>
+                    <div class="cs-step-title">Architectural Fault Identification</div>
+                    <div class="cs-step-desc">Conducted a comprehensive audit of the existing codebase to surface
+                      systemic design flaws — including redundant widget rebuilds from unscoped state, inefficient
+                      API call patterns lacking caching or retry logic, poorly normalised data models causing
+                      duplication across layers, and state management spread inconsistently across local, global,
+                      and ephemeral scopes without clear ownership boundaries.</div>
+                  </div>
+                  <div class="cs-step">
+                    <div class="cs-step-tag">Phase 02</div>
+                    <div class="cs-step-title">Architecture Overhaul & Data Layer Redesign</div>
+                    <div class="cs-step-desc">Introduced a structured state management solution with clearly defined
+                      ownership boundaries, eliminating ad-hoc local state scattered across the widget tree.
+                      Redesigned the data layer with normalised models to remove cross-layer duplication, refactored
+                      all network calls with a unified request pipeline, and introduced local database caching to
+                      reduce redundant fetches. Implemented an exponential backoff retry algorithm for failed
+                      requests and built offline interaction handling so users could continue core workflows without
+                      an active connection, syncing seamlessly on reconnect.</div>
+                  </div>
+
+                  <div class="cs-step">
+                    <div class="cs-step-tag">Phase 03</div>
+                    <div class="cs-step-title">Automation — CI/CD, Analysis & Release Pipeline</div>
+                    <div class="cs-step-desc">Introduced end-to-end automation across the development lifecycle —
+                      static code analysis on every commit to enforce quality gates, automated PR checks for lint
+                      and test coverage, enforced PR review and merge policies to prevent direct pushes to main,
+                      and a fully automated build and release pipeline that packaged, signed, and distributed
+                      to TestFlight and the internal Play Store track without manual intervention.</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="cs-doc-bar">
+              <div class="cs-doc-info">
+                <span class="cs-doc-label">Full Case Study Document</span>
+                <span class="cs-doc-name">Ostrum — Architectural Audit & Performance Review</span>
+              </div>
+              <a class="cs-doc-link" href="./assets/case-studies/ostrum-architectural-audit.pdf" target="_blank">
+                <span>Download PDF</span>
+                <span class="doc-arrow">↗</span>
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -1074,16 +2064,12 @@
       <a class="contact-email" href="mailto:97atheesh@gmail.com">97atheesh@gmail.com</a>
 
       <ul class="social-links">
-        <!-- ✏️ EDIT #13 — Replace each href="#" with your actual profile / file URLs
-             GitHub:   https://github.com/yourusername
-             LinkedIn: https://linkedin.com/in/yourusername
-             Twitter:  https://twitter.com/yourusername
-             Resume:   Upload resume.pdf to your repo and link it as ./resume.pdf -->
-        <li><a href="https://github.com/Atheesh-Alva" target="_blank" data-i18n="contact.github">GitHub</a></li>
-        <li><a
-            href="https://www.linkedin.com/in/atheesh-alva?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"
-            target="_blank" data-i18n="contact.linkedin">LinkedIn</a></li>
-        <li><a href="#" target="_blank" data-i18n="contact.resume">Resume ↗</a></li>
+        <li>
+          <a class="social-link-btn" href="./assets/resume/atheesh-alva-resume.pdf" target="_blank">
+            <span class="link-text" data-i18n="contact.resume">Resume</span>
+            <span class="link-arrow">↗</span>
+          </a>
+        </li>
       </ul>
     </div>
   </section>
@@ -1092,7 +2078,8 @@
        FOOTER
   ═════════════════════════════════════════════════════ -->
   <footer>
-    <p>© 2025 <span>Atheesh Alva</span>. <span data-i18n="footer.rights">All rights reserved.</span></p>
+    <p>© <span id="footer-year"></span> <span>Atheesh Alva</span>. <span data-i18n="footer.rights">All rights
+        reserved.</span></p>
     <p data-i18n="footer.built">Designed &amp; Built with <span>♥</span></p>
   </footer>
 
@@ -1109,7 +2096,7 @@
 
       // ── ENGLISH ──────────────────────────────────────────────
       en: {
-        "nav.about": "About", "nav.skills": "Skills", "nav.projects": "Projects", "nav.contact": "Contact",
+        "nav.about": "About", "nav.skills": "Skills", "nav.projects": "Projects", "nav.casestudy": "Case Study", "nav.contact": "Contact",
         "hero.eyebrow": "Available for opportunities",
         "hero.role": "Flutter Systems Architect",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.",
@@ -1118,7 +2105,7 @@
         "about.p1": "I'm a <strong>passionate developer</strong> who loves building things that live on the internet. My work is driven by curiosity, precision, and a deep appreciation for great design.", // [PERSONAL]
         "about.p2": "When I'm not writing code, you'll find me exploring new technologies, contributing to open-source, or sketching out ideas for the next big project.", // [PERSONAL]
         "about.p3": "I believe the best products come from the intersection of <strong>clean code, thoughtful UX, and clear communication.</strong>", // [PERSONAL]
-        "about.stat1": "Years of Experience", "about.stat2": "Projects Completed", "about.stat3": "Technologies Mastered", "about.stat4": "Commitment to Quality",
+        "about.stat1": "Years of Experience", "about.stat2": "Projects Completed", "about.stat3": "Systems Audited", "about.stat4": "Commitment to Quality",
         "skills.tag": "What I Know", "skills.title1": "My ", "skills.title2": "Skills",
         "skills.s1": "Semantic markup, modern layouts, responsive design.",
         "skills.s2": "ES6+, DOM manipulation, async programming.",
@@ -1131,14 +2118,16 @@
         "projects.p2.desc": "Describe what you built, the technologies involved, and any results or impact it had.",                                    // [PERSONAL]
         "projects.p3.desc": "Highlight the most impressive aspect — whether it's the scale, problem domain, tech stack, or outcome achieved.",          // [PERSONAL]
         "projects.viewLink": "View on GitHub",
+        "projects.appStore": "View on App Store",
+        "projects.playStore": "View on Play Store",
         "contact.tag": "Say Hello", "contact.title1": "Let's ", "contact.title2": "Connect", "contact.bgWord": "HELLO",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Resume ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Resume",
         "footer.rights": "All rights reserved.", "footer.built": "Designed &amp; Built with <span>♥</span>"
       },
 
       // ── SPANISH ──────────────────────────────────────────────
       es: {
-        "nav.about": "Sobre mí", "nav.skills": "Habilidades", "nav.projects": "Proyectos", "nav.contact": "Contacto",
+        "nav.about": "Sobre mí", "nav.skills": "Habilidades", "nav.projects": "Proyectos", "nav.casestudy": "Caso de Estudio", "nav.contact": "Contacto",
         "hero.eyebrow": "Disponible para oportunidades",
         "hero.role": "Arquitecto de Sistemas Flutter",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.", // [PERSONAL]
@@ -1147,7 +2136,7 @@
         "about.p1": "Soy un <strong>desarrollador apasionado</strong> que ama construir cosas en internet. Mi trabajo está impulsado por la curiosidad, la precisión y la apreciación del buen diseño.", // [PERSONAL]
         "about.p2": "Cuando no estoy escribiendo código, me encontrarás explorando nuevas tecnologías, contribuyendo al código abierto o esbozando ideas para el próximo gran proyecto.", // [PERSONAL]
         "about.p3": "Creo que los mejores productos surgen de la intersección entre <strong>código limpio, UX reflexivo y comunicación clara.</strong>", // [PERSONAL]
-        "about.stat1": "Años de Experiencia", "about.stat2": "Proyectos Completados", "about.stat3": "Tecnologías Dominadas", "about.stat4": "Compromiso con la Calidad",
+        "about.stat1": "Años de Experiencia", "about.stat2": "Proyectos Completados", "about.stat3": "Sistemas Auditados", "about.stat4": "Compromiso con la Calidad",
         "skills.tag": "Lo Que Sé", "skills.title1": "Mis ", "skills.title2": "Habilidades",
         "skills.s1": "Marcado semántico, diseños modernos, diseño responsivo.",
         "skills.s2": "ES6+, manipulación del DOM, programación asíncrona.",
@@ -1160,14 +2149,16 @@
         "projects.p2.desc": "Describe lo que construiste, las tecnologías involucradas y cualquier resultado o impacto que tuvo.",                           // [PERSONAL]
         "projects.p3.desc": "Destaca el aspecto más impresionante: ya sea la escala, el dominio del problema, el stack tecnológico o el resultado logrado.", // [PERSONAL]
         "projects.viewLink": "Ver en GitHub",
+        "projects.appStore": "Ver en App Store",
+        "projects.playStore": "Ver en Play Store",
         "contact.tag": "Di Hola", "contact.title1": "Vamos a ", "contact.title2": "Conectar", "contact.bgWord": "HOLA",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Currículum ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Currículum",
         "footer.rights": "Todos los derechos reservados.", "footer.built": "Diseñado y Construido con <span>♥</span>"
       },
 
       // ── GERMAN ───────────────────────────────────────────────
       de: {
-        "nav.about": "Über mich", "nav.skills": "Fähigkeiten", "nav.projects": "Projekte", "nav.contact": "Kontakt",
+        "nav.about": "Über mich", "nav.skills": "Fähigkeiten", "nav.projects": "Projekte", "nav.casestudy": "Fallstudie", "nav.contact": "Kontakt",
         "hero.eyebrow": "Offen für neue Möglichkeiten",
         "hero.role": "Flutter-Systemarchitekt",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.", // [PERSONAL]
@@ -1176,7 +2167,7 @@
         "about.p1": "Ich bin ein <strong>leidenschaftlicher Entwickler</strong>, der es liebt, Dinge im Internet zu bauen. Meine Arbeit wird von Neugier, Präzision und einer tiefen Wertschätzung für gutes Design angetrieben.", // [PERSONAL]
         "about.p2": "Wenn ich keinen Code schreibe, erkunde ich neue Technologien, trage zu Open Source bei oder skizziere Ideen für das nächste große Projekt.", // [PERSONAL]
         "about.p3": "Ich glaube, dass die besten Produkte an der Schnittstelle von <strong>sauberem Code, durchdachter UX und klarer Kommunikation</strong> entstehen.", // [PERSONAL]
-        "about.stat1": "Jahre Erfahrung", "about.stat2": "Abgeschlossene Projekte", "about.stat3": "Beherrschte Technologien", "about.stat4": "Qualitätsverpflichtung",
+        "about.stat1": "Jahre Erfahrung", "about.stat2": "Abgeschlossene Projekte", "about.stat3": "Auditierte Systeme", "about.stat4": "Qualitätsverpflichtung",
         "skills.tag": "Was ich kann", "skills.title1": "Meine ", "skills.title2": "Fähigkeiten",
         "skills.s1": "Semantisches Markup, moderne Layouts, responsives Design.",
         "skills.s2": "ES6+, DOM-Manipulation, asynchrone Programmierung.",
@@ -1189,14 +2180,16 @@
         "projects.p2.desc": "Beschreibe, was du gebaut hast, die beteiligten Technologien und welche Ergebnisse oder Auswirkungen es hatte.",                              // [PERSONAL]
         "projects.p3.desc": "Hebe den beeindruckendsten Aspekt hervor — sei es der Umfang, die Problemdomäne, der Tech-Stack oder das erzielte Ergebnis.",                // [PERSONAL]
         "projects.viewLink": "Auf GitHub ansehen",
+        "projects.appStore": "Im App Store ansehen",
+        "projects.playStore": "Im Play Store ansehen",
         "contact.tag": "Sag Hallo", "contact.title1": "Lass uns ", "contact.title2": "verbinden", "contact.bgWord": "HALLO",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Lebenslauf ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Lebenslauf",
         "footer.rights": "Alle Rechte vorbehalten.", "footer.built": "Entworfen &amp; gebaut mit <span>♥</span>"
       },
 
       // ── FRENCH ───────────────────────────────────────────────
       fr: {
-        "nav.about": "À propos", "nav.skills": "Compétences", "nav.projects": "Projets", "nav.contact": "Contact",
+        "nav.about": "À propos", "nav.skills": "Compétences", "nav.projects": "Projets", "nav.casestudy": "Étude de Cas", "nav.contact": "Contact",
         "hero.eyebrow": "Disponible pour de nouvelles opportunités",
         "hero.role": "Architecte Systèmes Flutter",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.", // [PERSONAL]
@@ -1205,7 +2198,7 @@
         "about.p1": "Je suis un <strong>développeur passionné</strong> qui aime construire des choses sur internet. Mon travail est guidé par la curiosité, la précision et une profonde appréciation du bon design.", // [PERSONAL]
         "about.p2": "Quand je n'écris pas de code, j'explore de nouvelles technologies, contribue à l'open-source, ou esquisse des idées pour le prochain grand projet.", // [PERSONAL]
         "about.p3": "Je crois que les meilleurs produits naissent de l'intersection entre <strong>code propre, UX réfléchi et communication claire.</strong>", // [PERSONAL]
-        "about.stat1": "Années d'Expérience", "about.stat2": "Projets Réalisés", "about.stat3": "Technologies Maîtrisées", "about.stat4": "Engagement Qualité",
+        "about.stat1": "Années d'Expérience", "about.stat2": "Projets Réalisés", "about.stat3": "Systèmes Audités", "about.stat4": "Engagement Qualité",
         "skills.tag": "Ce que je sais", "skills.title1": "Mes ", "skills.title2": "Compétences",
         "skills.s1": "Balisage sémantique, mises en page modernes, design responsive.",
         "skills.s2": "ES6+, manipulation du DOM, programmation asynchrone.",
@@ -1218,14 +2211,16 @@
         "projects.p2.desc": "Décrivez ce que vous avez construit, les technologies impliquées et les résultats ou l'impact que cela a eu.",                   // [PERSONAL]
         "projects.p3.desc": "Mettez en valeur l'aspect le plus impressionnant — l'échelle, le domaine du problème, la pile technologique ou le résultat obtenu.", // [PERSONAL]
         "projects.viewLink": "Voir sur GitHub",
+        "projects.appStore": "Voir sur l'App Store",
+        "projects.playStore": "Voir sur le Play Store",
         "contact.tag": "Dites Bonjour", "contact.title1": "Entrons en ", "contact.title2": "Contact", "contact.bgWord": "BONJOUR",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "CV ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "CV",
         "footer.rights": "Tous droits réservés.", "footer.built": "Conçu &amp; Développé avec <span>♥</span>"
       },
 
       // ── PORTUGUESE ───────────────────────────────────────────
       pt: {
-        "nav.about": "Sobre", "nav.skills": "Habilidades", "nav.projects": "Projetos", "nav.contact": "Contato",
+        "nav.about": "Sobre", "nav.skills": "Habilidades", "nav.projects": "Projetos", "nav.casestudy": "Estudo de Caso", "nav.contact": "Contato",
         "hero.eyebrow": "Disponível para oportunidades",
         "hero.role": "Arquiteto de Sistemas Flutter",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.", // [PERSONAL]
@@ -1234,7 +2229,7 @@
         "about.p1": "Sou um <strong>desenvolvedor apaixonado</strong> que ama construir coisas na internet. Meu trabalho é guiado por curiosidade, precisão e uma profunda apreciação pelo bom design.", // [PERSONAL]
         "about.p2": "Quando não estou escrevendo código, estou explorando novas tecnologias, contribuindo para o open-source ou esboçando ideias para o próximo grande projeto.", // [PERSONAL]
         "about.p3": "Acredito que os melhores produtos vêm da interseção entre <strong>código limpo, UX cuidadoso e comunicação clara.</strong>", // [PERSONAL]
-        "about.stat1": "Anos de Experiência", "about.stat2": "Projetos Concluídos", "about.stat3": "Tecnologias Dominadas", "about.stat4": "Compromisso com Qualidade",
+        "about.stat1": "Anos de Experiência", "about.stat2": "Projetos Concluídos", "about.stat3": "Sistemas Auditados", "about.stat4": "Compromisso com Qualidade",
         "skills.tag": "O que eu sei", "skills.title1": "Minhas ", "skills.title2": "Habilidades",
         "skills.s1": "Marcação semântica, layouts modernos, design responsivo.",
         "skills.s2": "ES6+, manipulação do DOM, programação assíncrona.",
@@ -1247,14 +2242,16 @@
         "projects.p2.desc": "Descreva o que você construiu, as tecnologias envolvidas e quaisquer resultados ou impacto que teve.",                    // [PERSONAL]
         "projects.p3.desc": "Destaque o aspecto mais impressionante — a escala, o domínio do problema, a stack tecnológica ou o resultado alcançado.", // [PERSONAL]
         "projects.viewLink": "Ver no GitHub",
+        "projects.appStore": "Ver na App Store",
+        "projects.playStore": "Ver no Play Store",
         "contact.tag": "Diga Olá", "contact.title1": "Vamos nos ", "contact.title2": "Conectar", "contact.bgWord": "OLÁ",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "Currículo ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Currículo",
         "footer.rights": "Todos os direitos reservados.", "footer.built": "Projetado &amp; Construído com <span>♥</span>"
       },
 
       // ── HINDI ────────────────────────────────────────────────
       hi: {
-        "nav.about": "परिचय", "nav.skills": "कौशल", "nav.projects": "परियोजनाएं", "nav.contact": "संपर्क",
+        "nav.about": "परिचय", "nav.skills": "कौशल", "nav.projects": "परियोजनाएं", "nav.casestudy": "केस स्टडी", "nav.contact": "संपर्क",
         "hero.eyebrow": "अवसरों के लिए उपलब्ध",
         "hero.role": "फ्लटर सिस्टम्स आर्किटेक्ट",
         "hero.desc": "I engineer seamless, automated digital ecosystems across all platforms via the Flutter stack.", // [PERSONAL]
@@ -1263,7 +2260,7 @@
         "about.p1": "मैं एक <strong>उत्साही डेवलपर</strong> हूँ जो इंटरनेट पर चीजें बनाना पसंद करता है। मेरा काम जिज्ञासा, सटीकता और अच्छे डिज़ाइन की गहरी समझ से प्रेरित है।", // [PERSONAL]
         "about.p2": "जब मैं कोड नहीं लिख रहा होता, तो आप मुझे नई तकनीकों की खोज करते, ओपन-सोर्स में योगदान देते, या अगले बड़े प्रोजेक्ट के लिए विचार बनाते पाएंगे।", // [PERSONAL]
         "about.p3": "मेरा मानना है कि सर्वश्रेष्ठ उत्पाद <strong>स्वच्छ कोड, सुविचारित UX और स्पष्ट संचार</strong> के मेल से बनते हैं।", // [PERSONAL]
-        "about.stat1": "वर्षों का अनुभव", "about.stat2": "पूर्ण परियोजनाएं", "about.stat3": "प्रौद्योगिकियाँ सीखी", "about.stat4": "गुणवत्ता की प्रतिबद्धता",
+        "about.stat1": "वर्षों का अनुभव", "about.stat2": "पूर्ण परियोजनाएं", "about.stat3": "ऑडिट किए सिस्टम", "about.stat4": "गुणवत्ता की प्रतिबद्धता",
         "skills.tag": "मुझे क्या आता है", "skills.title1": "मेरे ", "skills.title2": "कौशल",
         "skills.s1": "सिमेंटिक मार्कअप, आधुनिक लेआउट, रेस्पॉन्सिव डिज़ाइन।",
         "skills.s2": "ES6+, DOM मैनिपुलेशन, असिंक्रोनस प्रोग्रामिंग।",
@@ -1276,15 +2273,52 @@
         "projects.p2.desc": "बताएं कि आपने क्या बनाया, कौन सी तकनीकें इस्तेमाल कीं और इसका क्या प्रभाव रहा।",                                           // [PERSONAL]
         "projects.p3.desc": "सबसे प्रभावशाली पहलू उजागर करें — चाहे वह पैमाना हो, समस्या का क्षेत्र, टेक स्टैक, या प्राप्त परिणाम।",                    // [PERSONAL]
         "projects.viewLink": "GitHub पर देखें",
+        "projects.appStore": "App Store पर देखें",
+        "projects.playStore": "Play Store पर देखें",
         "contact.tag": "नमस्ते कहें", "contact.title1": "आइए ", "contact.title2": "जुड़ें", "contact.bgWord": "नमस्ते",
-        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.twitter": "Twitter", "contact.resume": "रेज़्युमे ↗",
+        "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "रेज़्युमे",
         "footer.rights": "सर्वाधिकार सुरक्षित।", "footer.built": "डिज़ाइन &amp; निर्मित <span>♥</span> के साथ"
       }
 
     }; // end i18n
 
-    // ── Language switcher logic ───────────────────────────────
+    // ── Dynamic footer year ───────────────────────────────────
+    document.getElementById('footer-year').textContent = new Date().getFullYear();
+
+    // ── Years of experience (from Sept 2019) ──────────────────
+    (function () {
+      const start = new Date(2019, 8, 1); // Sept 1 2019 (month is 0-indexed)
+      const now = new Date();
+      let years = now.getFullYear() - start.getFullYear();
+      if (now.getMonth() < start.getMonth() ||
+        (now.getMonth() === start.getMonth() && now.getDate() < start.getDate())) {
+        years--;
+      }
+      const el = document.getElementById('experience-years');
+      if (el) el.textContent = years + '+';
+    })();
+
+    // ── Language dropdown ─────────────────────────────────────
+    const langLabels = {
+      en: 'English', es: 'Español', de: 'Deutsch',
+      fr: 'Français', pt: 'Português', hi: 'हिन्दी'
+    };
     let currentLang = 'en';
+    const switcher = document.getElementById('langSwitcher');
+    const trigger = document.getElementById('langTrigger');
+    const dropdown = document.getElementById('langDropdown');
+    const labelEl = document.getElementById('langCurrentLabel');
+
+    trigger.addEventListener('click', (e) => {
+      e.stopPropagation();
+      switcher.classList.toggle('open');
+      trigger.setAttribute('aria-expanded', switcher.classList.contains('open'));
+    });
+    document.addEventListener('click', () => {
+      switcher.classList.remove('open');
+      trigger.setAttribute('aria-expanded', 'false');
+    });
+    dropdown.addEventListener('click', e => e.stopPropagation());
 
     function applyLang(lang) {
       const t = i18n[lang];
@@ -1295,28 +2329,36 @@
       overlay.classList.add('active');
 
       setTimeout(() => {
+        // Translate all data-i18n elements
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
           if (t[key] !== undefined) el.innerHTML = t[key];
         });
 
-        // Update the large background word in contact section
+        // Update contact background word
         const cs = document.getElementById('contact');
         if (t['contact.bgWord']) cs.setAttribute('data-bg-word', t['contact.bgWord']);
 
+        // Update html lang attribute + Hindi font
         document.documentElement.lang = lang;
         document.body.classList.toggle('lang-hi', lang === 'hi');
 
-        document.querySelectorAll('.lang-btn').forEach(b => {
-          b.classList.toggle('active', b.dataset.lang === lang);
+        // Update dropdown active state + trigger label
+        document.querySelectorAll('.lang-option').forEach(opt => {
+          opt.classList.toggle('active', opt.dataset.lang === lang);
         });
+        if (labelEl) labelEl.textContent = langLabels[lang] || lang;
+
+        // Close dropdown
+        switcher.classList.remove('open');
+        trigger.setAttribute('aria-expanded', 'false');
 
         overlay.classList.remove('active');
       }, 300);
     }
 
-    document.querySelectorAll('.lang-btn').forEach(btn => {
-      btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+    document.querySelectorAll('.lang-option').forEach(opt => {
+      opt.addEventListener('click', () => applyLang(opt.dataset.lang));
     });
 
     // ── Custom cursor ─────────────────────────────────────────
@@ -1330,51 +2372,65 @@
       ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
       requestAnimationFrame(tick);
     })();
-    document.querySelectorAll('a,button,.skill-card,.project-card').forEach(el => {
-      el.addEventListener('mouseenter', () => { cursor.style.transform = 'translate(-50%,-50%) scale(2.5)'; cursor.style.opacity = '0.5'; ring.style.transform = 'translate(-50%,-50%) scale(1.5)'; });
-      el.addEventListener('mouseleave', () => { cursor.style.transform = 'translate(-50%,-50%) scale(1)'; cursor.style.opacity = '1'; ring.style.transform = 'translate(-50%,-50%) scale(1)'; });
+    document.querySelectorAll('a, button, .skill-card, .project-card').forEach(el => {
+      el.addEventListener('mouseenter', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(2.5)';
+        cursor.style.opacity = '0.5';
+        ring.style.transform = 'translate(-50%,-50%) scale(1.5)';
+      });
+      el.addEventListener('mouseleave', () => {
+        cursor.style.transform = 'translate(-50%,-50%) scale(1)';
+        cursor.style.opacity = '1';
+        ring.style.transform = 'translate(-50%,-50%) scale(1)';
+      });
     });
 
     // ── Scroll reveal ─────────────────────────────────────────
     const io = new IntersectionObserver(entries => {
-      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); } });
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ── Skill bars ────────────────────────────────────────────
+    // ── Skill bar animations ──────────────────────────────────
     document.querySelectorAll('.skill-card').forEach(card => {
       const so = new IntersectionObserver(entries => {
-        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); so.unobserve(e.target); } });
+        entries.forEach(e => {
+          if (e.isIntersecting) { e.target.classList.add('visible'); so.unobserve(e.target); }
+        });
       }, { threshold: 0.3 });
       so.observe(card);
     });
 
-    // Stagger grid children
-    document.querySelectorAll('.skills-grid .skill-card,.projects-grid .project-card').forEach((el, i) => {
+    // ── Stagger grid children ─────────────────────────────────
+    document.querySelectorAll('.skills-grid .skill-card, .projects-grid .project-card').forEach((el, i) => {
       el.style.transitionDelay = (i * 0.1) + 's';
     });
 
+    // ── Case Study accordion ──────────────────────────────────
+    document.querySelectorAll('.cs-item').forEach(item => {
+      const header = item.querySelector('.cs-item-header');
+      const panel = item.querySelector('.cs-panel');
+
+      header.addEventListener('click', () => {
+        const isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.cs-item').forEach(i => {
+          i.classList.remove('open');
+          i.querySelector('.cs-panel').style.maxHeight = '0';
+        });
+
+        // If it wasn't open, open it
+        if (!isOpen) {
+          item.classList.add('open');
+          panel.style.maxHeight = panel.scrollHeight + 'px';
+        }
+      });
+    });
+
   </script>
-
-  <script>
-    (function () {
-      const startYear = 2019;
-      const startMonth = 8; // September
-
-      const now = new Date();
-      const currentYear = now.getFullYear();
-      const currentMonth = now.getMonth();
-
-      let yearsOfExp = currentYear - startYear;
-
-      if (currentMonth < startMonth) {
-        yearsOfExp--;
-      }
-
-      document.getElementById("experience-years").textContent = yearsOfExp + "+";
-    })();
-  </script>
-
 </body>
 
 </html>
