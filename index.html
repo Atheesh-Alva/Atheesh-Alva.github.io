@@ -816,6 +816,7 @@
       height: 100%;
       background: rgba(201, 169, 110, 0.04);
       transition: width 0.5s cubic-bezier(.25, .46, .45, .94);
+      pointer-events: none;
     }
 
     .project-card:hover::after {
@@ -1659,27 +1660,24 @@
         <!-- Availability badge — full width -->
         <div class="hero-badge">
           <div class="hero-badge-dot"></div>
-          <span class="hero-badge-text"><strong>Open to Consultation</strong> &nbsp;·&nbsp; Available for new
-            opportunities</span>
+          <span class="hero-badge-text"><strong data-i18n="hero.badge.status">Open for Consultation</strong> &nbsp;·&nbsp; <span data-i18n="hero.badge.sub">Available for new opportunities</span></span>
         </div>
 
-        <!-- Quick-info 2×2 tiles -->
-        <!-- ✏️ Update Location, Open to, Focus, and Stack to your own details -->
         <div class="hero-info-grid">
           <div class="hero-info-tile">
-            <span class="hero-info-tile-label">Location</span>
-            <span class="hero-info-tile-value">India <em>·</em> Remote</span>
+            <span class="hero-info-tile-label" data-i18n="hero.tile.location.label">Location</span>
+            <span class="hero-info-tile-value" data-i18n="hero.tile.location.val">India <em>·</em> Remote</span>
           </div>
           <div class="hero-info-tile">
-            <span class="hero-info-tile-label">Open To</span>
-            <span class="hero-info-tile-value">Consultation <em>·</em> Contract</span>
+            <span class="hero-info-tile-label" data-i18n="hero.tile.opento.label">Open To</span>
+            <span class="hero-info-tile-value" data-i18n="hero.tile.opento.val">Consultation <em>·</em> Contract</span>
           </div>
           <div class="hero-info-tile">
-            <span class="hero-info-tile-label">Focus</span>
-            <span class="hero-info-tile-value">Mobile <em>&</em> Cloud</span>
+            <span class="hero-info-tile-label" data-i18n="hero.tile.focus.label">Focus</span>
+            <span class="hero-info-tile-value" data-i18n="hero.tile.focus.val">Mobile <em>&amp;</em> Cloud</span>
           </div>
           <div class="hero-info-tile">
-            <span class="hero-info-tile-label">Primary Stack</span>
+            <span class="hero-info-tile-label" data-i18n="hero.tile.stack.label">Primary Stack</span>
             <span class="hero-info-tile-value">Flutter <em>·</em> AWS</span>
           </div>
         </div>
@@ -1897,8 +1895,8 @@
   ═════════════════════════════════════════════════════ -->
   <section id="casestudy">
     <div class="reveal">
-      <p class="section-tag">Deep Dive</p>
-      <h2 class="section-title">Case <em>Studies</em></h2>
+      <p class="section-tag" data-i18n="cs.tag">Deep Dive</p>
+      <h2 class="section-title"><span data-i18n="cs.title1">Case </span><em data-i18n="cs.title2">Studies</em></h2>
     </div>
 
     <div class="cs-list reveal">
@@ -1973,7 +1971,7 @@
             <div class="cs-body">
               <!-- Findings -->
               <div>
-                <p class="cs-col-label">Key Findings</p>
+                <p class="cs-col-label" data-i18n="cs.findings">Key Findings</p>
                 <!-- ✏️ Replace each finding with your real audit findings -->
                 <div class="cs-finding">
                   <div class="cs-finding-title">Unscoped State Propagation</div>
@@ -1995,7 +1993,7 @@
 
               <!-- Timeline -->
               <div>
-                <p class="cs-col-label">Audit & Restructure Phases</p>
+                <p class="cs-col-label" data-i18n="cs.phases">Audit &amp; Restructure Phases</p>
                 <!-- ✏️ Replace phases with your actual audit process -->
                 <div class="cs-timeline">
                   <div class="cs-step">
@@ -2034,11 +2032,11 @@
 
             <div class="cs-doc-bar">
               <div class="cs-doc-info">
-                <span class="cs-doc-label">Full Case Study Document</span>
-                <span class="cs-doc-name">Ostrum — Architectural Audit & Performance Review</span>
+                <span class="cs-doc-label" data-i18n="cs.doc.label">Full Case Study Document</span>
+                <span class="cs-doc-name" data-i18n="cs.doc.name">Ostrum — Architectural Audit &amp; Performance Review</span>
               </div>
               <a class="cs-doc-link" href="./assets/case-studies/ostrum-architectural-audit.pdf" target="_blank">
-                <span>Download PDF</span>
+                <span data-i18n="cs.doc.download">Download PDF</span>
                 <span class="doc-arrow">↗</span>
               </a>
             </div>
@@ -2091,7 +2089,7 @@
        should translate into each language if you update your own bio,
        role, or project descriptions. Everything else is already translated.
   ═════════════════════════════════════════════════════ -->
-  <script>
+  <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const i18n = {
 
       // ── ENGLISH ──────────────────────────────────────────────
@@ -2105,7 +2103,7 @@
         "about.p1": "I'm a <strong>passionate developer</strong> who loves building things that live on the internet. My work is driven by curiosity, precision, and a deep appreciation for great design.", // [PERSONAL]
         "about.p2": "When I'm not writing code, you'll find me exploring new technologies, contributing to open-source, or sketching out ideas for the next big project.", // [PERSONAL]
         "about.p3": "I believe the best products come from the intersection of <strong>clean code, thoughtful UX, and clear communication.</strong>", // [PERSONAL]
-        "about.stat1": "Years of Experience", "about.stat2": "Projects Completed", "about.stat3": "Systems Audited", "about.stat4": "Commitment to Quality",
+        "about.stat1": "Years of Experience", "about.stat2": "Projects Completed", "about.stat3": "Systems Audited", "about.stat4": "Projects In Progress",
         "skills.tag": "What I Know", "skills.title1": "My ", "skills.title2": "Skills",
         "skills.s1": "Semantic markup, modern layouts, responsive design.",
         "skills.s2": "ES6+, DOM manipulation, async programming.",
@@ -2122,7 +2120,21 @@
         "projects.playStore": "View on Play Store",
         "contact.tag": "Say Hello", "contact.title1": "Let's ", "contact.title2": "Connect", "contact.bgWord": "HELLO",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Resume",
-        "footer.rights": "All rights reserved.", "footer.built": "Designed &amp; Built with <span>♥</span>"
+        "footer.rights": "All rights reserved.", "footer.built": "Designed &amp; Built with <span>♥</span>",
+        "hero.badge.status": "Open for Consultation",
+        "hero.badge.sub": "Available for new opportunities",
+        "hero.tile.location.label": "Location",
+        "hero.tile.location.val": "India <em>·</em> Remote",
+        "hero.tile.opento.label": "Open To",
+        "hero.tile.opento.val": "Consultation <em>·</em> Contract",
+        "hero.tile.focus.label": "Focus",
+        "hero.tile.focus.val": "Mobile <em>&amp;</em> Cloud",
+        "hero.tile.stack.label": "Primary Stack",
+        "cs.tag": "Deep Dive", "cs.title1": "Case ", "cs.title2": "Studies",
+        "cs.findings": "Key Findings", "cs.phases": "Audit &amp; Restructure Phases",
+        "cs.doc.label": "Full Case Study Document",
+        "cs.doc.name": "Ostrum — Architectural Audit &amp; Performance Review",
+        "cs.doc.download": "Download PDF"
       },
 
       // ── SPANISH ──────────────────────────────────────────────
@@ -2136,7 +2148,7 @@
         "about.p1": "Soy un <strong>desarrollador apasionado</strong> que ama construir cosas en internet. Mi trabajo está impulsado por la curiosidad, la precisión y la apreciación del buen diseño.", // [PERSONAL]
         "about.p2": "Cuando no estoy escribiendo código, me encontrarás explorando nuevas tecnologías, contribuyendo al código abierto o esbozando ideas para el próximo gran proyecto.", // [PERSONAL]
         "about.p3": "Creo que los mejores productos surgen de la intersección entre <strong>código limpio, UX reflexivo y comunicación clara.</strong>", // [PERSONAL]
-        "about.stat1": "Años de Experiencia", "about.stat2": "Proyectos Completados", "about.stat3": "Sistemas Auditados", "about.stat4": "Compromiso con la Calidad",
+        "about.stat1": "Años de Experiencia", "about.stat2": "Proyectos Completados", "about.stat3": "Sistemas Auditados", "about.stat4": "Proyectos en Curso",
         "skills.tag": "Lo Que Sé", "skills.title1": "Mis ", "skills.title2": "Habilidades",
         "skills.s1": "Marcado semántico, diseños modernos, diseño responsivo.",
         "skills.s2": "ES6+, manipulación del DOM, programación asíncrona.",
@@ -2153,7 +2165,21 @@
         "projects.playStore": "Ver en Play Store",
         "contact.tag": "Di Hola", "contact.title1": "Vamos a ", "contact.title2": "Conectar", "contact.bgWord": "HOLA",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Currículum",
-        "footer.rights": "Todos los derechos reservados.", "footer.built": "Diseñado y Construido con <span>♥</span>"
+        "footer.rights": "Todos los derechos reservados.", "footer.built": "Diseñado y Construido con <span>♥</span>",
+        "hero.badge.status": "Disponible para Consultoría",
+        "hero.badge.sub": "Disponible para nuevas oportunidades",
+        "hero.tile.location.label": "Ubicación",
+        "hero.tile.location.val": "India <em>·</em> Remoto",
+        "hero.tile.opento.label": "Disponible Para",
+        "hero.tile.opento.val": "Consultoría <em>·</em> Contrato",
+        "hero.tile.focus.label": "Enfoque",
+        "hero.tile.focus.val": "Móvil <em>&amp;</em> Nube",
+        "hero.tile.stack.label": "Stack Principal",
+        "cs.tag": "Análisis Profundo", "cs.title1": "Estudios de ", "cs.title2": "Caso",
+        "cs.findings": "Hallazgos Clave", "cs.phases": "Fases de Auditoría",
+        "cs.doc.label": "Documento Completo del Caso",
+        "cs.doc.name": "Ostrum — Auditoría Arquitectónica y Revisión de Rendimiento",
+        "cs.doc.download": "Descargar PDF"
       },
 
       // ── GERMAN ───────────────────────────────────────────────
@@ -2167,7 +2193,7 @@
         "about.p1": "Ich bin ein <strong>leidenschaftlicher Entwickler</strong>, der es liebt, Dinge im Internet zu bauen. Meine Arbeit wird von Neugier, Präzision und einer tiefen Wertschätzung für gutes Design angetrieben.", // [PERSONAL]
         "about.p2": "Wenn ich keinen Code schreibe, erkunde ich neue Technologien, trage zu Open Source bei oder skizziere Ideen für das nächste große Projekt.", // [PERSONAL]
         "about.p3": "Ich glaube, dass die besten Produkte an der Schnittstelle von <strong>sauberem Code, durchdachter UX und klarer Kommunikation</strong> entstehen.", // [PERSONAL]
-        "about.stat1": "Jahre Erfahrung", "about.stat2": "Abgeschlossene Projekte", "about.stat3": "Auditierte Systeme", "about.stat4": "Qualitätsverpflichtung",
+        "about.stat1": "Jahre Erfahrung", "about.stat2": "Abgeschlossene Projekte", "about.stat3": "Auditierte Systeme", "about.stat4": "Laufende Projekte",
         "skills.tag": "Was ich kann", "skills.title1": "Meine ", "skills.title2": "Fähigkeiten",
         "skills.s1": "Semantisches Markup, moderne Layouts, responsives Design.",
         "skills.s2": "ES6+, DOM-Manipulation, asynchrone Programmierung.",
@@ -2184,7 +2210,21 @@
         "projects.playStore": "Im Play Store ansehen",
         "contact.tag": "Sag Hallo", "contact.title1": "Lass uns ", "contact.title2": "verbinden", "contact.bgWord": "HALLO",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Lebenslauf",
-        "footer.rights": "Alle Rechte vorbehalten.", "footer.built": "Entworfen &amp; gebaut mit <span>♥</span>"
+        "footer.rights": "Alle Rechte vorbehalten.", "footer.built": "Entworfen &amp; gebaut mit <span>♥</span>",
+        "hero.badge.status": "Offen für Beratung",
+        "hero.badge.sub": "Verfügbar für neue Möglichkeiten",
+        "hero.tile.location.label": "Standort",
+        "hero.tile.location.val": "Indien <em>·</em> Remote",
+        "hero.tile.opento.label": "Offen Für",
+        "hero.tile.opento.val": "Beratung <em>·</em> Vertrag",
+        "hero.tile.focus.label": "Schwerpunkt",
+        "hero.tile.focus.val": "Mobile <em>&amp;</em> Cloud",
+        "hero.tile.stack.label": "Haupt-Stack",
+        "cs.tag": "Tiefenanalyse", "cs.title1": "Fall", "cs.title2": "studien",
+        "cs.findings": "Wichtige Erkenntnisse", "cs.phases": "Audit-Phasen",
+        "cs.doc.label": "Vollständiges Fallstudiendokument",
+        "cs.doc.name": "Ostrum — Architektur-Audit &amp; Performance-Review",
+        "cs.doc.download": "PDF herunterladen"
       },
 
       // ── FRENCH ───────────────────────────────────────────────
@@ -2198,7 +2238,7 @@
         "about.p1": "Je suis un <strong>développeur passionné</strong> qui aime construire des choses sur internet. Mon travail est guidé par la curiosité, la précision et une profonde appréciation du bon design.", // [PERSONAL]
         "about.p2": "Quand je n'écris pas de code, j'explore de nouvelles technologies, contribue à l'open-source, ou esquisse des idées pour le prochain grand projet.", // [PERSONAL]
         "about.p3": "Je crois que les meilleurs produits naissent de l'intersection entre <strong>code propre, UX réfléchi et communication claire.</strong>", // [PERSONAL]
-        "about.stat1": "Années d'Expérience", "about.stat2": "Projets Réalisés", "about.stat3": "Systèmes Audités", "about.stat4": "Engagement Qualité",
+        "about.stat1": "Années d'Expérience", "about.stat2": "Projets Réalisés", "about.stat3": "Systèmes Audités", "about.stat4": "Projets en Cours",
         "skills.tag": "Ce que je sais", "skills.title1": "Mes ", "skills.title2": "Compétences",
         "skills.s1": "Balisage sémantique, mises en page modernes, design responsive.",
         "skills.s2": "ES6+, manipulation du DOM, programmation asynchrone.",
@@ -2215,7 +2255,21 @@
         "projects.playStore": "Voir sur le Play Store",
         "contact.tag": "Dites Bonjour", "contact.title1": "Entrons en ", "contact.title2": "Contact", "contact.bgWord": "BONJOUR",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "CV",
-        "footer.rights": "Tous droits réservés.", "footer.built": "Conçu &amp; Développé avec <span>♥</span>"
+        "footer.rights": "Tous droits réservés.", "footer.built": "Conçu &amp; Développé avec <span>♥</span>",
+        "hero.badge.status": "Disponible pour Consultation",
+        "hero.badge.sub": "Disponible pour de nouvelles opportunités",
+        "hero.tile.location.label": "Localisation",
+        "hero.tile.location.val": "Inde <em>·</em> Télétravail",
+        "hero.tile.opento.label": "Disponible Pour",
+        "hero.tile.opento.val": "Consultation <em>·</em> Contrat",
+        "hero.tile.focus.label": "Domaine",
+        "hero.tile.focus.val": "Mobile <em>&amp;</em> Cloud",
+        "hero.tile.stack.label": "Stack Principal",
+        "cs.tag": "Analyse Approfondie", "cs.title1": "Études de ", "cs.title2": "Cas",
+        "cs.findings": "Conclusions Clés", "cs.phases": "Phases d'Audit",
+        "cs.doc.label": "Document Complet de l'Étude de Cas",
+        "cs.doc.name": "Ostrum — Audit Architectural &amp; Revue de Performance",
+        "cs.doc.download": "Télécharger le PDF"
       },
 
       // ── PORTUGUESE ───────────────────────────────────────────
@@ -2229,7 +2283,7 @@
         "about.p1": "Sou um <strong>desenvolvedor apaixonado</strong> que ama construir coisas na internet. Meu trabalho é guiado por curiosidade, precisão e uma profunda apreciação pelo bom design.", // [PERSONAL]
         "about.p2": "Quando não estou escrevendo código, estou explorando novas tecnologias, contribuindo para o open-source ou esboçando ideias para o próximo grande projeto.", // [PERSONAL]
         "about.p3": "Acredito que os melhores produtos vêm da interseção entre <strong>código limpo, UX cuidadoso e comunicação clara.</strong>", // [PERSONAL]
-        "about.stat1": "Anos de Experiência", "about.stat2": "Projetos Concluídos", "about.stat3": "Sistemas Auditados", "about.stat4": "Compromisso com Qualidade",
+        "about.stat1": "Anos de Experiência", "about.stat2": "Projetos Concluídos", "about.stat3": "Sistemas Auditados", "about.stat4": "Projetos em Andamento",
         "skills.tag": "O que eu sei", "skills.title1": "Minhas ", "skills.title2": "Habilidades",
         "skills.s1": "Marcação semântica, layouts modernos, design responsivo.",
         "skills.s2": "ES6+, manipulação do DOM, programação assíncrona.",
@@ -2246,7 +2300,21 @@
         "projects.playStore": "Ver no Play Store",
         "contact.tag": "Diga Olá", "contact.title1": "Vamos nos ", "contact.title2": "Conectar", "contact.bgWord": "OLÁ",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "Currículo",
-        "footer.rights": "Todos os direitos reservados.", "footer.built": "Projetado &amp; Construído com <span>♥</span>"
+        "footer.rights": "Todos os direitos reservados.", "footer.built": "Projetado &amp; Construído com <span>♥</span>",
+        "hero.badge.status": "Disponível para Consultoria",
+        "hero.badge.sub": "Disponível para novas oportunidades",
+        "hero.tile.location.label": "Localização",
+        "hero.tile.location.val": "Índia <em>·</em> Remoto",
+        "hero.tile.opento.label": "Disponível Para",
+        "hero.tile.opento.val": "Consultoria <em>·</em> Contrato",
+        "hero.tile.focus.label": "Foco",
+        "hero.tile.focus.val": "Mobile <em>&amp;</em> Cloud",
+        "hero.tile.stack.label": "Stack Principal",
+        "cs.tag": "Análise Profunda", "cs.title1": "Estudos de ", "cs.title2": "Caso",
+        "cs.findings": "Principais Descobertas", "cs.phases": "Fases de Auditoria",
+        "cs.doc.label": "Documento Completo do Estudo de Caso",
+        "cs.doc.name": "Ostrum — Auditoria Arquitetural &amp; Revisão de Performance",
+        "cs.doc.download": "Baixar PDF"
       },
 
       // ── HINDI ────────────────────────────────────────────────
@@ -2260,7 +2328,7 @@
         "about.p1": "मैं एक <strong>उत्साही डेवलपर</strong> हूँ जो इंटरनेट पर चीजें बनाना पसंद करता है। मेरा काम जिज्ञासा, सटीकता और अच्छे डिज़ाइन की गहरी समझ से प्रेरित है।", // [PERSONAL]
         "about.p2": "जब मैं कोड नहीं लिख रहा होता, तो आप मुझे नई तकनीकों की खोज करते, ओपन-सोर्स में योगदान देते, या अगले बड़े प्रोजेक्ट के लिए विचार बनाते पाएंगे।", // [PERSONAL]
         "about.p3": "मेरा मानना है कि सर्वश्रेष्ठ उत्पाद <strong>स्वच्छ कोड, सुविचारित UX और स्पष्ट संचार</strong> के मेल से बनते हैं।", // [PERSONAL]
-        "about.stat1": "वर्षों का अनुभव", "about.stat2": "पूर्ण परियोजनाएं", "about.stat3": "ऑडिट किए सिस्टम", "about.stat4": "गुणवत्ता की प्रतिबद्धता",
+        "about.stat1": "वर्षों का अनुभव", "about.stat2": "पूर्ण परियोजनाएं", "about.stat3": "ऑडिट किए सिस्टम", "about.stat4": "प्रगति में परियोजनाएं",
         "skills.tag": "मुझे क्या आता है", "skills.title1": "मेरे ", "skills.title2": "कौशल",
         "skills.s1": "सिमेंटिक मार्कअप, आधुनिक लेआउट, रेस्पॉन्सिव डिज़ाइन।",
         "skills.s2": "ES6+, DOM मैनिपुलेशन, असिंक्रोनस प्रोग्रामिंग।",
@@ -2277,7 +2345,21 @@
         "projects.playStore": "Play Store पर देखें",
         "contact.tag": "नमस्ते कहें", "contact.title1": "आइए ", "contact.title2": "जुड़ें", "contact.bgWord": "नमस्ते",
         "contact.github": "GitHub", "contact.linkedin": "LinkedIn", "contact.resume": "रेज़्युमे",
-        "footer.rights": "सर्वाधिकार सुरक्षित।", "footer.built": "डिज़ाइन &amp; निर्मित <span>♥</span> के साथ"
+        "footer.rights": "सर्वाधिकार सुरक्षित।", "footer.built": "डिज़ाइन &amp; निर्मित <span>♥</span> के साथ",
+        "hero.badge.status": "परामर्श के लिए उपलब्ध",
+        "hero.badge.sub": "नए अवसरों के लिए उपलब्ध",
+        "hero.tile.location.label": "स्थान",
+        "hero.tile.location.val": "भारत <em>·</em> रिमोट",
+        "hero.tile.opento.label": "उपलब्ध",
+        "hero.tile.opento.val": "परामर्श <em>·</em> अनुबंध",
+        "hero.tile.focus.label": "फोकस",
+        "hero.tile.focus.val": "मोबाइल <em>&amp;</em> क्लाउड",
+        "hero.tile.stack.label": "प्राथमिक स्टैक",
+        "cs.tag": "गहन विश्लेषण", "cs.title1": "केस ", "cs.title2": "स्टडीज़",
+        "cs.findings": "मुख्य निष्कर्ष", "cs.phases": "ऑडिट चरण",
+        "cs.doc.label": "पूर्ण केस स्टडी दस्तावेज़",
+        "cs.doc.name": "Ostrum — आर्किटेक्चरल ऑडिट &amp; प्रदर्शन समीक्षा",
+        "cs.doc.download": "PDF डाउनलोड करें"
       }
 
     }; // end i18n
@@ -2419,7 +2501,7 @@
         // Close all
         document.querySelectorAll('.cs-item').forEach(i => {
           i.classList.remove('open');
-          i.querySelector('.cs-panel').style.maxHeight = '0';
+                    i.querySelector('.cs-panel').style.maxHeight = '0';
         });
 
         // If it wasn't open, open it
