@@ -32,6 +32,6 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add assets/resume/myresume.pdf
-          git diff --cached --quiet || git commit -m "chore: auto-update myresume.pdf"
+          git add assets/resume//atheesh-alva-resume.pdf
+          git diff --cached --quiet || git commit -m "chore: auto-update /atheesh-alva-resume.pdf"
           git push
