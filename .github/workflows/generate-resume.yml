@@ -3,6 +3,7 @@ name: Generate Resume PDF
 on:
   push:
     paths:
+      - 'resume.json'
       - 'resume.md'
       - 'scripts/generate-resume.js'
 
