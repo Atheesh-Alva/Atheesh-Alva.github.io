@@ -1,0 +1,11 @@
+{
+  "name": "portfolio-resume-generator",
+  "version": "1.0.0",
+  "scripts": {
+    "generate-resume": "node scripts/generate-resume.js"
+  },
+  "dependencies": {
+    "marked": "^12.0.0",
+    "puppeteer": "^22.0.0"
+  }
+}
