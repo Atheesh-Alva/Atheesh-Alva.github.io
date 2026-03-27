@@ -1,0 +1,23 @@
+{
+  "name": "Atheesh Alva",
+  "title": "Flutter Engineer  ·  API Development  ·  Amazon Web Services",
+  "yearsOfExperience": "6+",
+
+  "contact": {
+    "email": "97atheesh@email.com",
+    "phone": "+91 99455 13022",
+    "location": "Mangalore, Karnataka, India",
+    "github": "github.com/Atheesh-Alva",
+    "linkedin": "linkedin.com/in/atheesh-alva",
+    "portfolio": "atheesh-alva.github.io"
+  },
+
+  "experience": [
+    { "company": "Ostrum tech Limited, UK" },
+    { "company": "Infosys Limited, IN" }
+  ],
+
+  "education": [
+    { "school": "NMIT, Bangalore" }
+  ]
+}
