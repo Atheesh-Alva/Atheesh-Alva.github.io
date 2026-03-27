@@ -1,0 +1,40 @@
+name: Generate Resume PDF
+
+# Wake up ONLY when resume.md changes (saves time)
+on:
+  push:
+    paths:
+      - 'resume.md'
+      - 'scripts/generate-resume.js'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest     # GitHub gives us a free computer to run this on
+
+    steps:
+      # 1. Download your repo onto the free computer
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      # 2. Install Node.js (the language the script is written in)
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      # 3. Install puppeteer + marked (the robot's tools)
+      - name: Install dependencies
+        run: npm install
+
+      # 4. Run the script → generates assets/resume/myresume.pdf
+      - name: Generate resume PDF
+        run: node scripts/generate-resume.js
+
+      # 5. Save the PDF back into your repo
+      - name: Commit the new PDF
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add assets/resume/myresume.pdf
+          git diff --cached --quiet || git commit -m "chore: auto-update myresume.pdf"
+          git push
