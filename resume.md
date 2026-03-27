@@ -8,7 +8,7 @@
 
 ## Skills
 **Languages:** Dart, JavaScript  
-**Tools:** Flutter, Git  
+**Tools:** Flutter, GitHub
 
 ## Education
 B.Tech Computer Science — NMIT, Bangalore · 2019
