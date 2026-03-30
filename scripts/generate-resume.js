@@ -122,10 +122,11 @@ console.log('\n🚀 Launching headless browser...');
     await page.evaluateHandle('document.fonts.ready');
 
     await page.pdf({
-      path:            OUTPUT_FILE,
-      format:          'A4',
-      printBackground: true,
-      margin:          { top: 0, bottom: 0, left: 0, right: 0 },
+      path:             OUTPUT_FILE,
+      format:           'A4',
+      printBackground:  true,
+      preferCSSPageSize: true,   // lets @page / @page :first in CSS control margins
+      margin:           { top: 0, bottom: 0, left: 0, right: 0 },
     });
 
     console.log('\n✅ Done!');
