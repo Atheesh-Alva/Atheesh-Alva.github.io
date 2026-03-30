@@ -30,11 +30,11 @@ jobs:
 
       - name: Verify PDF was created
         run: |
-          if [ ! -f "assets/resume/myresume.pdf" ]; then
-            echo "❌ PDF not found at assets/resume/myresume.pdf"
+          if [ ! -f "assets/resume/atheesh-alva-resume.pdf" ]; then
+            echo "❌ PDF not found at assets/resume/atheesh-alva-resume.pdf"
             exit 1
           fi
-          echo "✅ PDF found: $(du -h assets/resume/myresume.pdf | cut -f1)"
+          echo "✅ PDF found: $(du -h assets/resume/atheesh-alva-resume.pdf | cut -f1)"
 
       - name: Commit the new PDF
         run: |
