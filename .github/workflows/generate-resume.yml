@@ -4,13 +4,12 @@ on:
   push:
     paths:
       - 'resume.json'
-      - 'resume.md'
+      - 'resume-template.html'
       - 'scripts/generate-resume.js'
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    
     permissions:
       contents: write
 
@@ -28,6 +27,14 @@ jobs:
 
       - name: Generate resume PDF
         run: node scripts/generate-resume.js
+
+      - name: Verify PDF was created
+        run: |
+          if [ ! -f "assets/resume/myresume.pdf" ]; then
+            echo "❌ PDF not found at assets/resume/myresume.pdf"
+            exit 1
+          fi
+          echo "✅ PDF found: $(du -h assets/resume/myresume.pdf | cut -f1)"
 
       - name: Commit the new PDF
         run: |
