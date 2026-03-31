@@ -102,11 +102,39 @@ if (meta.careerStartDate) {
   yearsOfExp = `${completed}`;
 }
 
+// Compute automation savings: 100 * totalReduction / totalInitial
+// Add as many tasks as needed in meta.automationTasks in resume.json
+let automationTimeSaved = '';
+if (meta.automationTasks && meta.automationTasks.length > 0) {
+  const totalInitial = meta.automationTasks.reduce((s, t) => s + t.beforeMin, 0);
+  const totalAfter = meta.automationTasks.reduce((s, t) => s + t.afterMin, 0);
+  const totalReduction = totalInitial - totalAfter;
+  const pct = Math.round(100 * totalReduction / totalInitial);
+  automationTimeSaved = `${pct}%`;
+  console.log(`   Automation tasks : ${meta.automationTasks.length}`);
+  console.log(`   Before           : ${totalInitial} min`);
+  console.log(`   After            : ${totalAfter} min`);
+  console.log(`   Saved            : ${totalReduction} min → ${automationTimeSaved}`);
+}
+
+// Compute latency reduction: 100 * totalReduction / totalInitial (same formula as automation)
+// Add more entries to meta.latencyProjects in resume.json to include them
+let latencyReduction = '';
+if (meta.latencyProjects && meta.latencyProjects.length > 0) {
+  const totalBefore = meta.latencyProjects.reduce((s, p) => s + p.beforeMs, 0);
+  const totalAfter = meta.latencyProjects.reduce((s, p) => s + p.afterMs, 0);
+  const totalReduction = totalBefore - totalAfter;
+  const pct = Math.round(100 * totalReduction / totalBefore);
+  latencyReduction = `${pct}%`;
+  console.log(`   Latency projects : ${meta.latencyProjects.length}`);
+  meta.latencyProjects.forEach(p =>
+    console.log(`     ${p.label.padEnd(35)} ${p.beforeMs}ms → ${p.afterMs}ms`)
+  );
+  console.log(`   Aggregate reduction : ${latencyReduction}`);
+}
+
 // Strip non-digit chars for tel: href  e.g. "+91 98765 43210" → "+919876543210"
 const phoneRaw = (basics.phone || '').replace(/[^\d+]/g, '');
-
-console.log(`   Career started : ${meta.careerStartDate || 'not set'}`);
-console.log(`   Years derived  : ${yearsOfExp}+`);
 
 // ── Step 6: Build replacements map and inject into template ──────────────────
 const replacements = {
@@ -120,8 +148,8 @@ const replacements = {
   LINKEDIN: getProfile('linkedin'),
   PORTFOLIO: (basics.url || '').replace('https://', ''),
   YEARS: yearsOfExp,
-  AUTOMATION_TIME_SAVED: meta.automationTimeSaved || '',
-  UPTIME_ACHIEVED: meta.uptimeAchieved || '',
+  AUTOMATION_TIME_SAVED: automationTimeSaved,
+  LATENCY_REDUCTION: latencyReduction,
   SYSTEMS_AUDITED: meta.systemsAudited || '',
   COMPANY1: work[0]?.name || '',
   COMPANY2: work[1]?.name || '',

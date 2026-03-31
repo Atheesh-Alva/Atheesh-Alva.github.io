@@ -2,15 +2,15 @@
   "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
   "basics": {
     "name": "Atheesh Alva",
-    "label": "Flutter Engineer  ·  API Development  ·  Amazon Web Services",
+    "label": "Flutter Engineer  · Technical Consultant",
     "image": "assets/profile.jpg",
-    "email": "atheesh@email.com",
-    "phone": "+91 98765 43210",
+    "email": "97atheesh@gmail.com",
+    "phone": "+91 99455 13022",
     "url": "https://atheesh-alva.github.io",
-    "summary": "Results-driven Flutter Engineer with 6+ years of hands-on experience delivering cross-platform mobile applications for Android and iOS. Skilled in designing and building RESTful APIs, managing relational databases with MySQL, and deploying cloud infrastructure on Amazon Web Services.",
+    "summary": "Strategic Flutter Engineer architecting high-availability mobile ecosystems and scalable cloud-native solutions. Expert in bridging the gap between complex UI/UX requirements and high-performance backend systems. A technical leader focused on engineering excellence through CI/CD automation, architectural reasoning, and cross-functional team mentorship.",
     "location": {
-      "city": "Mumbai",
-      "region": "Maharashtra",
+      "city": "Mangalore",
+      "region": "Karnataka",
       "countryCode": "IN"
     },
     "profiles": [
@@ -28,9 +28,36 @@
   },
   "meta": {
     "careerStartDate": "2019-09",
-    "automationTimeSaved": "75%",
-    "uptimeAchieved": "99.9%",
-    "systemsAudited": "10+"
+    "automationTasks": [
+      {
+        "label": "Play Store & App Store Release Pipeline",
+        "beforeMin": 210,
+        "afterMin": 35
+      },
+      {
+        "label": "OWASP Check and PR Creation Pipeline",
+        "beforeMin": 30,
+        "afterMin": 4
+      },
+      {
+        "label": "Auto PR Merge Pipeline",
+        "beforeMin": 10,
+        "afterMin": 1
+      },
+      {
+        "label": "GitHub Issue Creation Pipeline",
+        "beforeMin": 30,
+        "afterMin": 1
+      }
+    ],
+    "latencyProjects": [
+      {
+        "label": "Ostrum app",
+        "beforeMs": 35,
+        "afterMs": 8
+      }
+    ],
+    "systemsAudited": "0"
   },
   "work": [
     {
