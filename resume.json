@@ -1,23 +1,217 @@
 {
-  "name": "Atheesh Alva",
-  "title": "Flutter Engineer",
-  "yearsOfExperience": "6",
-
-  "contact": {
-    "email": "97atheesh@gmail.com",
-    "phone": "+91 99455 13022",
-    "location": "Mangalore, Karnataka, India",
-    "github": "github.com/Atheesh-Alva",
-    "linkedin": "linkedin.com/in/atheesh-alva",
-    "portfolio": "atheesh-alva.github.io"
+  "$schema": "https://raw.githubusercontent.com/jsonresume/resume-schema/v1.0.0/schema.json",
+  "basics": {
+    "name": "Atheesh Alva",
+    "label": "Flutter Engineer  ·  API Development  ·  Amazon Web Services",
+    "image": "assets/profile.jpg",
+    "email": "atheesh@email.com",
+    "phone": "+91 98765 43210",
+    "url": "https://atheesh-alva.github.io",
+    "summary": "Results-driven Flutter Engineer with 6+ years of hands-on experience delivering cross-platform mobile applications for Android and iOS. Skilled in designing and building RESTful APIs, managing relational databases with MySQL, and deploying cloud infrastructure on Amazon Web Services.",
+    "location": {
+      "city": "Mumbai",
+      "region": "Maharashtra",
+      "countryCode": "IN"
+    },
+    "profiles": [
+      {
+        "network": "GitHub",
+        "username": "Atheesh-Alva",
+        "url": "https://github.com/Atheesh-Alva"
+      },
+      {
+        "network": "LinkedIn",
+        "username": "atheesh-alva",
+        "url": "https://linkedin.com/in/atheesh-alva"
+      }
+    ]
   },
-
-  "experience": [
-    { "company": "Ostrum tech Limited, UK" },
-    { "company": "Infosys Limited, IN" }
+  "meta": {
+    "careerStartDate": "2019-09",
+    "automationTimeSaved": "75%",
+    "uptimeAchieved": "99.9%",
+    "systemsAudited": "10+"
+  },
+  "work": [
+    {
+      "name": "Your Current Company",
+      "position": "Senior Flutter Developer",
+      "startDate": "2023-01",
+      "location": "Mumbai, Maharashtra",
+      "highlights": [
+        "Architected and shipped three production Flutter applications serving 50,000+ active users across Android and iOS platforms.",
+        "Designed and maintained RESTful APIs using Node.js, reducing average response latency by 42 percent through MySQL query optimization and indexing strategies.",
+        "Migrated on-premise backend services to AWS EC2 and RDS, improving system uptime from 97 percent to 99.9 percent.",
+        "Implemented BLoC state management pattern across all applications, achieving clean separation of UI and business logic layers.",
+        "Integrated Firebase Authentication, Crashlytics, and FCM push notifications across all products."
+      ],
+      "keywords": [
+        "Flutter",
+        "Dart",
+        "Node.js",
+        "MySQL",
+        "AWS",
+        "Firebase",
+        "BLoC",
+        "REST API"
+      ]
+    },
+    {
+      "name": "Your Previous Company",
+      "position": "Flutter Developer",
+      "startDate": "2021-07",
+      "endDate": "2022-12",
+      "location": "Remote",
+      "highlights": [
+        "Built cross-platform mobile applications from concept to release using Flutter, collaborating with design team to deliver pixel-accurate interfaces.",
+        "Developed and integrated REST APIs and authored optimized MySQL stored procedures and database views.",
+        "Established a CI/CD pipeline using GitHub Actions, compressing release cycles from two weeks to three days.",
+        "Deployed and managed static assets using AWS S3 and CloudFront CDN."
+      ],
+      "keywords": [
+        "Flutter",
+        "MySQL",
+        "AWS S3",
+        "GitHub Actions",
+        "REST API",
+        "Provider"
+      ]
+    }
   ],
-
   "education": [
-    { "school": "NMIT, Bangalore" }
+    {
+      "institution": "Your University Name",
+      "area": "Computer Science and Engineering",
+      "studyType": "Bachelor of Engineering",
+      "startDate": "2017-01",
+      "endDate": "2021-01",
+      "score": "8.4 / 10"
+    }
+  ],
+  "certificates": [
+    {
+      "name": "AWS Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "2024-01-01"
+    },
+    {
+      "name": "AWS Solutions Architect – Associate",
+      "issuer": "Amazon Web Services",
+      "date": "2024-06-01"
+    },
+    {
+      "name": "Flutter and Dart – The Complete Guide",
+      "issuer": "Udemy",
+      "date": "2023-03-01"
+    },
+    {
+      "name": "Google Associate Android Developer",
+      "issuer": "Google",
+      "date": "2023-08-01"
+    }
+  ],
+  "skills": [
+    {
+      "name": "Mobile Development",
+      "keywords": [
+        "Flutter",
+        "Dart",
+        "BLoC",
+        "Provider",
+        "Riverpod",
+        "Animations"
+      ]
+    },
+    {
+      "name": "Backend and API",
+      "keywords": [
+        "REST API Design",
+        "Node.js",
+        "GraphQL",
+        "Express.js"
+      ]
+    },
+    {
+      "name": "Database",
+      "keywords": [
+        "MySQL",
+        "Firebase Firestore",
+        "PostgreSQL",
+        "SQLite"
+      ]
+    },
+    {
+      "name": "Cloud and Infrastructure",
+      "keywords": [
+        "AWS EC2",
+        "AWS S3",
+        "AWS RDS",
+        "AWS Lambda",
+        "Docker",
+        "CI/CD"
+      ]
+    }
+  ],
+  "languages": [
+    {
+      "language": "English",
+      "fluency": "Native or Bilingual"
+    },
+    {
+      "language": "Kannada",
+      "fluency": "Professional"
+    },
+    {
+      "language": "Hindi",
+      "fluency": "Conversational"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Inventory Tracking System",
+      "description": "End-to-end warehouse management application with real-time stock tracking, barcode scanning, PDF reporting, and role-based access control. REST API backend with 35+ endpoints deployed on AWS RDS and EC2.",
+      "keywords": [
+        "Flutter",
+        "Node.js",
+        "MySQL",
+        "AWS"
+      ]
+    },
+    {
+      "name": "Real-Time Chat Platform",
+      "description": "Feature-rich messaging application with encrypted chats, media sharing, read receipts, and push notifications. WebSocket server on AWS EC2 handles 10,000 concurrent connections.",
+      "keywords": [
+        "Flutter",
+        "Firebase Firestore",
+        "WebSocket"
+      ]
+    },
+    {
+      "name": "Healthcare Patient Portal",
+      "description": "Patient-doctor appointment booking platform with scheduling, prescription management, and PDF generation. Serverless report processing via AWS Lambda reduces infrastructure costs by 60 percent.",
+      "keywords": [
+        "Flutter",
+        "REST API",
+        "MySQL",
+        "AWS Lambda"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "title": "Best Application Award – Internal Hackathon 2023",
+      "awarder": "Company Hackathon",
+      "summary": "Built a real-time fleet tracking application in 24 hours using Flutter and AWS Location Services. Won among 18 competing teams."
+    },
+    {
+      "title": "Open Source Contributor",
+      "awarder": "Flutter Community",
+      "summary": "Merged three pull requests into official Flutter ecosystem packages including flutter_local_notifications and the Dio HTTP client."
+    },
+    {
+      "title": "Technical Author",
+      "awarder": "Medium",
+      "summary": "Published 12 in-depth articles on Flutter architecture and AWS integration, accumulating over 4,000 followers."
+    }
   ]
 }
