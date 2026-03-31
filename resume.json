@@ -142,52 +142,67 @@
   "certificates": [],
   "skills": [
     {
-      "name": "Mobile Development",
+      "name": "Application Development",
       "items": [
         {
           "name": "Flutter and Dart",
           "level": "Expert",
-          "pct": 95
-        },
-        {
-          "name": "State Management",
-          "level": "Expert",
           "pct": 90
         },
         {
-          "name": "Animations and Interface",
+          "name": "State Management",
           "level": "Advanced",
-          "pct": 82
+          "pct": 85
+        },
+        {
+          "name": "Play Store & App Store Deployment and maintenance",
+          "level": "Expert",
+          "pct": 95
         }
       ]
     },
     {
-      "name": "Backend and API",
+      "name": "Cloud & Backend Development",
       "items": [
         {
-          "name": "REST API Design",
-          "level": "Expert",
-          "pct": 92
+          "name": "AWS Lambda",
+          "level": "Intermediate",
+          "pct": 70
         },
         {
-          "name": "Node.js",
+          "name": "AWS AppSync",
+          "level": "Intermediate",
+          "pct": 70
+        },
+        {
+          "name": "AWS Cognito",
           "level": "Advanced",
           "pct": 80
         },
         {
-          "name": "GraphQL",
+          "name": "AWS CloudWatch",
           "level": "Intermediate",
-          "pct": 68
-        }
-      ]
-    },
-    {
-      "name": "Database",
-      "items": [
+          "pct": 75
+        },
         {
-          "name": "MySQL",
-          "level": "Expert",
-          "pct": 90
+          "name": "AWS S3",
+          "level": "Intermediate",
+          "pct": 70
+        },
+        {
+          "name": "AWS SES",
+          "level": "Intermediate",
+          "pct": 70
+        },
+        {
+          "name": "Firebase Cloud Messaging",
+          "level": "Advanced",
+          "pct": 85
+        },
+        {
+          "name": "Firebase Authentication",
+          "level": "Advanced",
+          "pct": 85
         },
         {
           "name": "Firebase Firestore",
@@ -195,27 +210,27 @@
           "pct": 85
         },
         {
-          "name": "PostgreSQL",
+          "name": "Firebase Storage",
+          "level": "Advanced",
+          "pct": 80
+        },
+        {
+          "name": "MySQL",
           "level": "Intermediate",
-          "pct": 68
+          "pct": 70
         }
       ]
     },
     {
-      "name": "Cloud and Infrastructure",
+      "name": "Automation & CI/CD",
       "items": [
         {
-          "name": "Amazon Web Services",
+          "name": "GitHub Actions",
           "level": "Advanced",
-          "pct": 82
+          "pct": 85
         },
         {
-          "name": "Continuous Integration and Deployment",
-          "level": "Advanced",
-          "pct": 78
-        },
-        {
-          "name": "Docker",
+          "name": "AWS CodePipeline",
           "level": "Intermediate",
           "pct": 70
         }
@@ -239,75 +254,40 @@
       "pips": 3
     }
   ],
-  "interests": [
-    {
-      "name": "Mobile-First Architecture"
-    },
-    {
-      "name": "API Performance"
-    },
-    {
-      "name": "Open Source"
-    },
-    {
-      "name": "Technical Writing"
-    },
-    {
-      "name": "Cloud Cost Optimisation"
-    },
-    {
-      "name": "Developer Experience"
-    }
-  ],
+  "interests": [],
   "projects": [
     {
-      "name": "Inventory Tracking System",
+      "name": "Purple Door",
       "keywords": [
         "Flutter",
-        "Node.js",
+        "AWS",
         "MySQL",
-        "AWS"
+        "BLoC",
+        "Firebase FCM",
+        "GitHub Actions"
       ],
-      "description": "End-to-end warehouse management application with real-time stock tracking, barcode scanning, PDF reporting, and role-based access control. REST API backend with 35+ endpoints deployed on AWS RDS and EC2."
+      "description": "Live Mobile application on Play Store and App Store for airport assistance services, providing real-time support for passengers with special needs. Features include booking assistance, live tracking, and push notifications. Integrated AWS services for backend processing and MySQL for data management."
     },
     {
-      "name": "Real-Time Chat Platform",
+      "name": "Ostrum",
       "keywords": [
         "Flutter",
-        "Firebase Firestore",
-        "WebSocket"
+        "AWS",
+        "MySQL",
+        "BLoC",
+        "Method Channel",
+        "Firebase FCM",
+        "GitHub Actions"
       ],
-      "description": "Feature-rich messaging application with encrypted chats, media sharing, read receipts, and push notifications. WebSocket server on AWS EC2 handles 10,000 concurrent connections."
+      "description": "Live Mobile application on Play Store and App Store; is a special assistance platform enabled at airports. It is intended to be used by special assistance agents, pilots, cabin crew and boarding agents. Access to this app is limited and is controlled by the relevant airports or special assistance providers."
     },
     {
-      "name": "Healthcare Patient Portal",
+      "name": "Flarcade",
       "keywords": [
-        "Flutter",
-        "REST API",
-        "MySQL",
-        "AWS Lambda"
+        "Flutter"
       ],
-      "description": "Patient-doctor appointment booking platform with scheduling, prescription management, and PDF generation. Serverless report processing via AWS Lambda reduces infrastructure costs by 60 percent."
+      "description": "App that provides a collection of mini-games built using Flutter, showcasing the framework's capabilities in creating engaging and interactive gaming experiences. The app features a variety of games, including puzzles, arcade-style challenges, and casual games, all designed to demonstrate the versatility and performance of Flutter in game development."
     }
   ],
-  "awards": [
-    {
-      "title": "Best Application Award – Internal Hackathon 2023",
-      "awarder": "Company Hackathon",
-      "icon": "trophy",
-      "summary": "Built a real-time fleet tracking application in 24 hours using Flutter and AWS Location Services. Won among 18 competing teams."
-    },
-    {
-      "title": "Open Source Contributor",
-      "awarder": "Flutter Community",
-      "icon": "star",
-      "summary": "Merged three pull requests into official Flutter ecosystem packages including flutter_local_notifications and the Dio HTTP client."
-    },
-    {
-      "title": "Technical Author",
-      "awarder": "Medium",
-      "icon": "article",
-      "summary": "Published 12 in-depth articles on Flutter architecture and AWS integration, accumulating over 4,000 followers."
-    }
-  ]
+  "awards": []
 }
