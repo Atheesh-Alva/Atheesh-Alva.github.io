@@ -835,10 +835,7 @@
 
       <div class="section">
         <div class="section-title"><span class="dot"></span>Professional Summary</div>
-        <p class="summary-text">Results-driven Flutter Engineer with {{YEARS}}+ years of hands-on experience delivering
-          cross-platform mobile applications for Android and iOS. Skilled in designing and building RESTful Application
-          Programming Interfaces, managing relational databases with MySQL, and deploying cloud infrastructure on Amazon
-          Web Services. Committed to clean architecture, maintainable code, and measurable product outcomes.</p>
+        <p class="summary-text">{{SUMMARY}}</p>
       </div>
 
       <div class="stats-row">
@@ -862,131 +859,22 @@
 
       <div class="section">
         <div class="section-title"><span class="dot"></span>Work Experience</div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <div class="exp-role">Senior Flutter Developer</div>
-            <div class="exp-date">January 2023 – Present</div>
-          </div>
-          <div class="exp-company">{{COMPANY1}} <em>· Full-time · Mumbai, Maharashtra</em></div>
-          <ul class="exp-bullets">
-            <li>Architected and shipped three production Flutter applications serving 50,000+ active users across
-              Android and iOS platforms.</li>
-            <li>Designed and maintained RESTful Application Programming Interfaces using Node.js, reducing average
-              response latency by 42 percent through MySQL query optimization and indexing strategies.</li>
-            <li>Migrated on-premise backend services to Amazon Web Services Elastic Compute Cloud and Relational
-              Database Service, improving system uptime from 97 percent to 99.9 percent.</li>
-            <li>Implemented Business Logic Component state management pattern across all applications, achieving clean
-              separation of user interface and business logic layers.</li>
-            <li>Integrated Firebase Authentication, Crashlytics error monitoring, and Firebase Cloud Messaging push
-              notification services across all products.</li>
-          </ul>
-          <div class="tech-chips">
-            <span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Node.js</span>
-            <span class="chip">MySQL</span><span class="chip">Amazon Web Services</span><span
-              class="chip">Firebase</span>
-            <span class="chip">Business Logic Component</span><span class="chip">REST Application Programming
-              Interface</span>
-          </div>
-        </div>
-
-        <div class="exp-item">
-          <div class="exp-header">
-            <div class="exp-role">Flutter Developer</div>
-            <div class="exp-date">July 2021 – December 2022</div>
-          </div>
-          <div class="exp-company">{{COMPANY2}} <em>· Full-time · Remote</em></div>
-          <ul class="exp-bullets">
-            <li>Built cross-platform mobile applications from concept to release using Flutter, collaborating with
-              design team to deliver pixel-accurate user interfaces.</li>
-            <li>Developed and integrated REST Application Programming Interfaces and authored optimized MySQL stored
-              procedures and database views.</li>
-            <li>Established a Continuous Integration and Continuous Deployment pipeline using GitHub Actions,
-              compressing release cycles from two weeks to three days.</li>
-            <li>Deployed and managed static assets using Amazon Web Services Simple Storage Service and CloudFront
-              Content Delivery Network.</li>
-          </ul>
-          <div class="tech-chips">
-            <span class="chip">Flutter</span><span class="chip">MySQL</span><span class="chip">Amazon Web Services
-              Simple Storage Service</span>
-            <span class="chip">GitHub Actions</span><span class="chip">REST API</span><span class="chip">Provider</span>
-          </div>
-        </div>
+        {{WORK_HTML}}
       </div>
 
       <div class="section">
         <div class="section-title"><span class="dot"></span>Notable Projects</div>
-
-        <div class="project-item">
-          <div class="project-row">
-            <div class="project-name">Inventory Tracking System</div>
-            <div class="project-stack">Flutter · Node.js · MySQL · Amazon Web Services</div>
-          </div>
-          <div class="project-desc">End-to-end warehouse management application with real-time stock tracking, barcode
-            scanning, Portable Document Format reporting, and role-based access control. Backend REST API with 35+
-            endpoints deployed on Amazon Web Services Relational Database Service and Elastic Compute Cloud.</div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-row">
-            <div class="project-name">Real-Time Chat Platform</div>
-            <div class="project-stack">Flutter · Firebase Firestore · WebSocket</div>
-          </div>
-          <div class="project-desc">Feature-rich messaging application with encrypted chats, media sharing, read
-            receipts, and push notifications. WebSocket server on Amazon Web Services Elastic Compute Cloud handles
-            10,000 concurrent connections.</div>
-        </div>
-
-        <div class="project-item">
-          <div class="project-row">
-            <div class="project-name">Healthcare Patient Portal</div>
-            <div class="project-stack">Flutter · REST API · MySQL · Amazon Web Services Lambda</div>
-          </div>
-          <div class="project-desc">Patient-doctor appointment booking platform with scheduling, prescription
-            management, and Portable Document Format generation. Serverless report processing via Amazon Web Services
-            Lambda reduces backend infrastructure costs by 60 percent.</div>
-        </div>
+        {{PROJECTS_HTML}}
       </div>
 
       <div class="section">
         <div class="section-title"><span class="dot"></span>Education</div>
-        <div class="edu-item">
-          <div>
-            <div class="edu-degree">Bachelor of Engineering – Computer Science and Engineering</div>
-            <div class="edu-school">{{UNIVERSITY}} · Grade Point Average: 8.4 out of 10</div>
-          </div>
-          <div class="edu-date">2017 – 2021</div>
-        </div>
+        {{EDUCATION_HTML}}
       </div>
 
       <div class="section">
         <div class="section-title"><span class="dot"></span>Achievements</div>
-
-        <div class="achievement-item">
-          <div class="ach-icon"><svg viewBox="0 0 24 24">
-              <path
-                d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zm-14 3V7h2v3.82C5.84 10.4 5 9.3 5 8zm7 6c-1.65 0-3-1.35-3-3V5h6v6c0 1.65-1.35 3-3 3zm7-6c0 1.3-.84 2.4-2 2.82V7h2v1z" />
-            </svg></div>
-          <div class="achievement-text"><strong>Best Application Award – Internal Hackathon 2023.</strong> Built a
-            real-time fleet tracking application in 24 hours using Flutter and Amazon Web Services Location Services.
-            Won among 18 competing teams.</div>
-        </div>
-        <div class="achievement-item">
-          <div class="ach-icon"><svg viewBox="0 0 24 24">
-              <path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z" />
-            </svg></div>
-          <div class="achievement-text"><strong>Open Source Contributor.</strong> Merged three pull requests into
-            official Flutter ecosystem packages including flutter_local_notifications and the Dio HTTP client library.
-          </div>
-        </div>
-        <div class="achievement-item">
-          <div class="ach-icon"><svg viewBox="0 0 24 24">
-              <path
-                d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z" />
-            </svg></div>
-          <div class="achievement-text"><strong>Technical Author.</strong> Published 12 in-depth articles on Flutter
-            architecture and Amazon Web Services integration on Medium, accumulating over 4,000 followers.</div>
-        </div>
+        {{ACHIEVEMENTS_HTML}}
       </div>
 
     </main>
@@ -996,213 +884,27 @@
 
       <div class="r-section">
         <div class="r-title">Technical Skills</div>
-
-        <div class="skill-group">
-          <div class="skill-group-name">Mobile Development</div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Flutter and Dart</span><span
-                class="skill-level">Expert</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:95%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">State Management</span><span
-                class="skill-level">Expert</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:90%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Animations and Interface</span><span
-                class="skill-level">Advanced</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:82%"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-name">Backend and API</div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">REST API Design</span><span
-                class="skill-level">Expert</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:92%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Node.js</span><span class="skill-level">Advanced</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:80%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">GraphQL</span><span class="skill-level">Intermediate</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:68%"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-name">Database</div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">MySQL</span><span class="skill-level">Expert</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:90%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Firebase Firestore</span><span
-                class="skill-level">Advanced</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:85%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">PostgreSQL</span><span
-                class="skill-level">Intermediate</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:68%"></div>
-            </div>
-          </div>
-        </div>
-
-        <div class="skill-group">
-          <div class="skill-group-name">Cloud and Infrastructure</div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Amazon Web Services</span><span
-                class="skill-level">Advanced</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:82%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Continuous Integration and Deployment</span><span
-                class="skill-level">Advanced</span></div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:78%"></div>
-            </div>
-          </div>
-          <div class="skill-row">
-            <div class="skill-top"><span class="skill-name">Docker</span><span class="skill-level">Intermediate</span>
-            </div>
-            <div class="skill-bar">
-              <div class="skill-bar-fill" style="width:70%"></div>
-            </div>
-          </div>
-        </div>
+        {{SKILLS_HTML}}
       </div>
 
       <div class="r-section">
         <div class="r-title">Certifications</div>
-        <div class="cert-item">
-          <div class="cert-check"><svg viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-            </svg></div>
-          <div>
-            <div class="cert-name">Amazon Web Services Cloud Practitioner</div>
-            <div class="cert-meta">Amazon Web Services · 2024</div>
-          </div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-check"><svg viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-            </svg></div>
-          <div>
-            <div class="cert-name">Amazon Web Services Solutions Architect – Associate</div>
-            <div class="cert-meta">Amazon Web Services · 2024</div>
-          </div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-check"><svg viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-            </svg></div>
-          <div>
-            <div class="cert-name">Flutter and Dart – The Complete Guide</div>
-            <div class="cert-meta">Udemy · 2023</div>
-          </div>
-        </div>
-        <div class="cert-item">
-          <div class="cert-check"><svg viewBox="0 0 24 24">
-              <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z" />
-            </svg></div>
-          <div>
-            <div class="cert-name">Google Associate Android Developer</div>
-            <div class="cert-meta">Google · 2023</div>
-          </div>
-        </div>
+        {{CERTIFICATIONS_HTML}}
       </div>
 
       <div class="r-section">
         <div class="r-title">Languages</div>
-        <div class="lang-item">
-          <div class="lang-top"><span class="lang-name">English</span><span class="lang-level-label">Native or
-              Bilingual</span></div>
-          <div class="lang-pips">
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-          </div>
-        </div>
-        <div class="lang-item">
-          <div class="lang-top"><span class="lang-name">Kannada</span><span class="lang-level-label">Professional</span>
-          </div>
-          <div class="lang-pips">
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip off"></div>
-          </div>
-        </div>
-        <div class="lang-item">
-          <div class="lang-top"><span class="lang-name">Hindi</span><span class="lang-level-label">Conversational</span>
-          </div>
-          <div class="lang-pips">
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip on"></div>
-            <div class="pip off"></div>
-            <div class="pip off"></div>
-          </div>
-        </div>
+        {{LANGUAGES_HTML}}
       </div>
 
       <div class="r-section">
         <div class="r-title">Tools and Platforms</div>
-        <div class="tools-wrap">
-          <span class="tool-tag">Git</span>
-          <span class="tool-tag">GitHub</span>
-          <span class="tool-tag">Postman</span>
-          <span class="tool-tag">Android Studio</span>
-          <span class="tool-tag">Visual Studio Code</span>
-          <span class="tool-tag">Figma</span>
-          <span class="tool-tag">Amazon Elastic Compute Cloud</span>
-          <span class="tool-tag">Amazon Simple Storage Service</span>
-          <span class="tool-tag">Amazon Relational Database Service</span>
-          <span class="tool-tag">Amazon Lambda</span>
-          <span class="tool-tag">Firebase</span>
-          <span class="tool-tag">Jira</span>
-          <span class="tool-tag">Notion</span>
-        </div>
+        {{TOOLS_HTML}}
       </div>
 
       <div class="r-section">
         <div class="r-title">Professional Interests</div>
-        <div class="tools-wrap">
-          <span class="tool-tag">Mobile-First Architecture</span>
-          <span class="tool-tag">API Performance</span>
-          <span class="tool-tag">Open Source</span>
-          <span class="tool-tag">Technical Writing</span>
-          <span class="tool-tag">Cloud Cost Optimization</span>
-          <span class="tool-tag">Developer Experience</span>
-        </div>
+        {{INTERESTS_HTML}}
       </div>
 
     </aside>
