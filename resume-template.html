@@ -205,6 +205,37 @@
       border-right: 1px solid var(--divider);
     }
 
+    /* ── RIGHT (sidebar, ~38%) ────────── */
+    .right {
+      flex: 1;
+      background: var(--sidebar);
+      padding: 20px 18px 24px 18px;
+      /* Accent stripe caps the top of every page the sidebar appears on.
+         Makes page-2 continuation look intentional, not cut-off.        */
+      border-top: 3px solid var(--navy);
+      /* Compensate so page-1 top doesn't double-indent */
+      margin-top: -3px;
+    }
+
+    /* On page 1 the body sits right under the header-bar —
+       suppress the top accent so it doesn't clash with the header */
+    .body>.right:first-of-type {
+      border-top: none;
+      margin-top: 0;
+    }
+
+    /* Print: give both columns explicit top padding so content
+       never slams against the @page margin edge on page 2+      */
+    @media print {
+      .left {
+        padding-top: 18px;
+      }
+
+      .right {
+        padding-top: 18px;
+      }
+    }
+
     .section {
       margin-bottom: 16px;
     }
@@ -478,13 +509,6 @@
     .achievement-text strong {
       color: var(--text);
       font-weight: 600;
-    }
-
-    /* ── RIGHT (skills + other, ~38%) ── */
-    .right {
-      flex: 1;
-      background: var(--sidebar);
-      padding: 20px 18px 24px 18px;
     }
 
     .r-section {
