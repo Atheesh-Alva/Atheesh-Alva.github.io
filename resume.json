@@ -69,6 +69,7 @@
         "Architectural Optimization: Refactored and optimized complex legacy codebases, achieving a 60% reduction in source volume while significantly enhancing system scalability and runtime performance.",
         "CI/CD Architecture: Engineered automated CI/CD pipelines that reduced manual deployment time from 4 hours to 30 minutes per release cycle.",
         "State & Data Management: Implemented BLoC state management pattern across all applications, achieving clean separation of UI and business logic layers. Implemented HydratedBloc and Drift, reducing redundant network requests by 30% through intelligent local caching and persistence.",
+        "Implemented custom Bluetooth beacon scanning by building native Android integrations and exposing telemetry data directly to the Flutter layer via robust Method Channels, ensuring high-performance, real-world hardware interaction.",
         "Strategic Resource Management: Decreased monthly cloud infrastructure overhead by 25% through rigorous code optimization and the elimination of redundant API calls.",
         "Technical Mentorship: Led a team of 5+ developers, conducting bi-weekly technical workshops that reduced average PR revision cycles."
       ],
@@ -81,6 +82,28 @@
         "UI/UX Collaboration",
         "AWS",
         "MySQL"
+      ]
+    },
+    {
+      "name": "Freelance",
+      "position": "Flutter Developer",
+      "employmentType": "Part-time",
+      "startDate": "2020-05",
+      "endDate": "2022-01",
+      "location": "Remote",
+      "highlights": [
+        "Implement secure user authentication, real-time databases, and scalable cloud storage solutions using Firebase.",
+        "Integrate advanced Google Maps API functionalities, including live tracking, custom markers, and geolocation routing.",
+        "Handle the entire end-to-end publishing, testing, and approval process for both the Google Play Store and Apple App Store.",
+        "Successfully built a social media platform running on Android and iOS."
+      ],
+      "keywords": [
+        "Flutter",
+        "Dart",
+        "Firebase",
+        "Google Play Store",
+        "Apple App Store",
+        "Google Maps API"
       ]
     },
     {
@@ -105,28 +128,6 @@
         "ABAP",
         "DBMS"
       ]
-    },
-    {
-      "name": "Freelance",
-      "position": "Flutter Developer",
-      "employmentType": "Part-time",
-      "startDate": "2020-05",
-      "endDate": "2022-01",
-      "location": "Remote",
-      "highlights": [
-        "SAP HANA Implementation: Spearheaded the implementation of SAP HANA for a major retail client.",
-        "SAP BW Optimization: Led the optimization of SAP BW data models, reducing query execution time and improving overall system performance.",
-        "SAP BI Reporting: Developed and maintained SAP BI reports and dashboards, enhancing data visualisation and decision-making for business stakeholders.",
-        "Migration from On-Prem to AWS Cloud: Played a key role in the migration of SAP systems from on-premises to cloud infrastructure, ensuring minimal downtime and data integrity."
-      ],
-      "keywords": [
-        "Flutter",
-        "Dart",
-        "Firebase",
-        "Google Play Store",
-        "Apple App Store",
-        "Google Maps API"
-      ]
     }
   ],
   "education": [
@@ -139,7 +140,6 @@
       "score": "8.6 / 10"
     }
   ],
-  "certificates": [],
   "skills": [
     {
       "name": "Application Development",
