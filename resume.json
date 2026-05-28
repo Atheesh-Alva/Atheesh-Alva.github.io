@@ -284,7 +284,8 @@
     {
       "name": "Flarcade",
       "keywords": [
-        "Flutter"
+        "Flutter",
+        "Riverpod"
       ],
       "description": "App that provides a collection of mini-games built using Flutter, showcasing the framework's capabilities in creating engaging and interactive gaming experiences. The app features a variety of games, including puzzles, arcade-style challenges, and casual games, all designed to demonstrate the versatility and performance of Flutter in game development."
     }
