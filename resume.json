@@ -153,12 +153,12 @@
         {
           "name": "State Management",
           "level": "Advanced",
-          "pct": 85
+          "pct": 90
         },
         {
           "name": "Play Store & App Store Deployment and maintenance",
-          "level": "Expert",
-          "pct": 95
+          "level": "Advanced",
+          "pct": 85
         }
       ]
     },
