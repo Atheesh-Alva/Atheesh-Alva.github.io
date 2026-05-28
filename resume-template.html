@@ -17,35 +17,22 @@
     }
 
     :root {
-      /* Accessible palette — contrast ratios verified to WCAG AA (4.5:1+) */
-      /* Colors do NOT rely solely on hue — bars also use texture/label     */
       --navy: #1B2B4B;
       --accent: #1558A8;
-      /* on white bg — 7.1:1 contrast            */
       --accent-lt: #E8F1FB;
-      /* chip background                         */
       --accent-dark: #0D3E7A;
       --on-dark: #8EC6FF;
-      /* on navy bg — 4.7:1 contrast             */
       --on-dark-dim: #BBDAFF;
-      /* secondary on navy — 6.8:1               */
       --text: #1A2030;
-      /* body — 16.4:1 on white                  */
       --text-mid: #3C4A60;
-      /* secondary — 8.1:1                       */
       --text-soft: #5A6880;
-      /* muted — 4.8:1                           */
       --sidebar: #F0F4FA;
       --divider: #CBD5E8;
       --white: #FFFFFF;
       --bar-blue: #1558A8;
-      /* skill bar fill — blue                   */
       --bar-track: #C8D6EC;
-      /* unfilled track                          */
       --green-check: #0D6E42;
-      /* cert checkmark green                    */
       --green-lt: #D4EDDF;
-      /* cert check background                   */
     }
 
     html,
@@ -60,9 +47,6 @@
       print-color-adjust: exact;
     }
 
-    /* ════════════════════════════════════
-       HEADER — full width
-    ════════════════════════════════════ */
     .header {
       width: 100%;
       background: var(--navy);
@@ -189,16 +173,12 @@
       background: linear-gradient(90deg, var(--accent) 0%, var(--on-dark) 55%, transparent 100%);
     }
 
-    /* ════════════════════════════════════
-       BODY — two columns
-    ════════════════════════════════════ */
     .body {
       display: flex;
       width: 100%;
       min-height: calc(297mm - 116px);
     }
 
-    /* ── LEFT (larger, ~62%) ─────────── */
     .left {
       flex: 0 0 128mm;
       padding: 20px 20px 24px 24px;
@@ -207,32 +187,19 @@
       box-decoration-break: clone;
     }
 
-    /* ── RIGHT (sidebar, ~38%) ────────── */
     .right {
       flex: 1;
       background: var(--sidebar);
       padding: 20px 18px 24px 18px;
-
-      /* box-decoration-break: clone tells the print engine to re-stamp
-         all borders and padding at the top of every page this element
-         continues onto — page 2 gets the same top border as page 1.
-         This is the correct CSS mechanism; selector hacks cannot do this. */
       -webkit-box-decoration-break: clone;
       box-decoration-break: clone;
-
-      /* Navy top border — will appear on page 1 AND re-appear at the
-         top of the sidebar on every continuation page automatically   */
       border-top: 3px solid var(--navy);
     }
 
-    /* Page 1 only: the header-bar already provides the navy line,
-       so suppress the duplicate border directly below it             */
     .header+.header-bar+.body .right {
       border-top-color: transparent;
     }
 
-    /* Both columns: consistent top padding so content never presses
-       against the @page margin edge on continuation pages            */
     @media print {
       .left {
         padding-top: 20px;
@@ -279,7 +246,6 @@
       line-height: 1.7;
     }
 
-    /* Stats row — ruled style, industry standard for print resumes */
     .stats-row {
       display: flex;
       margin-bottom: 16px;
@@ -292,7 +258,6 @@
       flex: 1;
       text-align: center;
       padding: 0 6px;
-      /* Thin left divider between each stat except the first */
       border-left: 1px solid var(--divider);
     }
 
@@ -320,7 +285,6 @@
       white-space: nowrap;
     }
 
-    /* Experience timeline */
     .exp-item {
       margin-bottom: 13px;
       position: relative;
@@ -430,7 +394,6 @@
       border: 1px solid #C0D0E8;
     }
 
-    /* Projects */
     .project-item {
       margin-bottom: 10px;
     }
@@ -462,7 +425,6 @@
       margin-top: 2px;
     }
 
-    /* Education */
     .edu-item {
       display: flex;
       justify-content: space-between;
@@ -489,7 +451,6 @@
       white-space: nowrap;
     }
 
-    /* Achievements */
     .achievement-item {
       display: flex;
       gap: 8px;
@@ -541,7 +502,6 @@
       border-bottom: 1.5px solid var(--divider);
     }
 
-    /* Skill groups */
     .skill-group {
       margin-bottom: 8px;
     }
@@ -591,7 +551,6 @@
       position: relative;
     }
 
-    /* Stripe pattern — conveys info beyond color for colorblind accessibility */
     .skill-bar-fill::after {
       content: '';
       position: absolute;
@@ -600,7 +559,6 @@
           rgba(255, 255, 255, 0.2) 4px, rgba(255, 255, 255, 0.2) 5px);
     }
 
-    /* Certifications */
     .cert-item {
       display: flex;
       gap: 7px;
@@ -639,7 +597,6 @@
       color: var(--text-soft);
     }
 
-    /* Languages */
     .lang-item {
       margin-bottom: 7px;
     }
@@ -667,7 +624,6 @@
       gap: 3px;
     }
 
-    /* Pips: size + fill + border — three visual cues, not just color */
     .pip {
       width: 7px;
       height: 7px;
@@ -683,7 +639,6 @@
       background: transparent;
     }
 
-    /* Tools */
     .tools-wrap {
       display: flex;
       flex-wrap: wrap;
@@ -700,12 +655,6 @@
       border: 1px solid var(--divider);
     }
 
-    /* ════════════════════════════════════
-       PRINT — page margins (industry std)
-       Page 1  : 0 top (header bleeds full-width), 18mm bottom
-       Page 2+ : 18mm top + bottom
-       18mm ≈ 0.7in — standard resume margin used by Word / Google Docs
-    ════════════════════════════════════ */
     @page {
       size: A4;
       margin: 18mm 0;
@@ -716,7 +665,6 @@
       margin-bottom: 18mm;
     }
 
-    /* Prevent awkward mid-element page breaks */
     .exp-item,
     .project-item,
     .cert-item,
@@ -729,17 +677,14 @@
       page-break-inside: avoid;
     }
 
-    /* Keep section headings with their first content block */
     .section-title,
     .r-title {
       break-after: avoid;
       page-break-after: avoid;
     }
 
-    /* Clickable contact links */
     .contact-link {
       display: contents;
-      /* passes layout to parent .contact-item */
       text-decoration: none;
       color: inherit;
     }
@@ -750,7 +695,6 @@
     }
 
     @media print {
-
       html,
       body {
         width: 210mm;
@@ -872,11 +816,6 @@
         {{EDUCATION_HTML}}
       </div>
 
-      <div class="section">
-        <div class="section-title"><span class="dot"></span>Achievements</div>
-        {{ACHIEVEMENTS_HTML}}
-      </div>
-
     </main>
 
     <!-- RIGHT ────────────────────────────────────────────── -->
@@ -888,23 +827,8 @@
       </div>
 
       <div class="r-section">
-        <div class="r-title">Certifications</div>
-        {{CERTIFICATIONS_HTML}}
-      </div>
-
-      <div class="r-section">
         <div class="r-title">Languages</div>
         {{LANGUAGES_HTML}}
-      </div>
-
-      <div class="r-section">
-        <div class="r-title">Tools and Platforms</div>
-        {{TOOLS_HTML}}
-      </div>
-
-      <div class="r-section">
-        <div class="r-title">Professional Interests</div>
-        {{INTERESTS_HTML}}
       </div>
 
     </aside>
